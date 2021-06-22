@@ -1,0 +1,19 @@
+/**
+ * Created by Sherlock on 17.06.2021.
+ */
+ 
+.modal-header, .btn-warning{
+  background-color: #ffd200;
+  color: #30318C;
+}
+
+.credit-info{
+  padding: 10px 14px;
+  &>.d-flex:not(:last-child){
+    min-height: 56px;
+    border-bottom: 1px solid #efefef;
+  }
+  &>.d-flex{
+    padding: 12px 0;
+  }
+}
