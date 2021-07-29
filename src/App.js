@@ -68,7 +68,18 @@ function App() {
     return (
         isDesktopOrLaptop ?
             <div className="">
-                <h3 className="text-center my-5">Это функция пока что не доступно для этого устройство</h3>
+                <h3 className="text-center my-5">Данная функция пока недоступна для персональных компьютеров</h3>
+
+                <div className="d-flex download justify-content-center">
+                    <a href="https://play.google.com/store/apps/details?id=com.zoodel.kz" target="_blank" className="download-item font-roboto-medium d-flex align-items-center" rel="noreferrer">
+                        <span className="icon icon-google"/>
+                        Google play
+                    </a>
+                    <a href="https://apps.apple.com/app/id1281450163?mt=8" target="_blank" className="download-item font-roboto-medium d-flex align-items-center" rel="noreferrer">
+                        <span className="icon icon-apple"/>
+                        App Store
+                    </a>
+                </div>
             </div> :
             <div>
                 {/*{step === 0 ?*/}
@@ -97,7 +108,7 @@ function App() {
                                 href="#">Политикой конфиденциальности ZoodPay.</a>
                             </p>
                         </div>
-                        <button type="button" className="btn-block font-roboto-medium">Продолжать</button>
+                        <button type="button" className="btn-block font-roboto-medium">Продолжить</button>
                     </div> :
                     step === 2 ?
                         <>
@@ -128,7 +139,7 @@ function App() {
                                     {step === 0 ?
                                         <>
                                             <div className="form-group">
-                                                <label htmlFor="seria">Паспортная серия / ПИНФЛ*</label>
+                                                <label htmlFor="seria">Введите серию паспорта или ПИНФЛ</label>
                                                 <input autoComplete="off" type="text" id="seria" value={number}
                                                        className="form-control" onChange={changeNumber}/>
                                             </div>
@@ -237,38 +248,58 @@ function App() {
                                         ""
                                     }
 
-                                    <div className="terms">
-                                        <div className="d-flex justify-content-between align-items-center">
-                                            <p className="font-roboto-medium mb-0">Условия использования</p>
-                                            <span className={`icon icon-${isOpen ? "minus" : "plus"}`}
-                                                  onClick={() => setIsOpen(!isOpen)}/>
-                                        </div>
-                                        <Collapse isOpen={isOpen} className="text">
-                                            <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores,
-                                                provident!
-                                            </p>
-                                            <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus error
-                                                est
-                                                excepturi harum laudantium, rem!
-                                            </p>
-                                            <p>
-                                                Lorem ipsum dolor sit amet.
-                                            </p>
-                                        </Collapse>
-                                    </div>
+                                    {/*<div className="terms">*/}
+                                    {/*    <div className="d-flex justify-content-between align-items-center">*/}
+                                    {/*        <p className="font-roboto-medium mb-0">Условия использования</p>*/}
+                                    {/*        <span className={`icon icon-${isOpen ? "minus" : "plus"}`}*/}
+                                    {/*              onClick={() => setIsOpen(!isOpen)}/>*/}
+                                    {/*    </div>*/}
+                                    {/*    <Collapse isOpen={isOpen} className="text">*/}
+                                    {/*        <p>*/}
+                                    {/*            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores,*/}
+                                    {/*            provident!*/}
+                                    {/*        </p>*/}
+                                    {/*        <p>*/}
+                                    {/*            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus error*/}
+                                    {/*            est*/}
+                                    {/*            excepturi harum laudantium, rem!*/}
+                                    {/*        </p>*/}
+                                    {/*        <p>*/}
+                                    {/*            Lorem ipsum dolor sit amet.*/}
+                                    {/*        </p>*/}
+                                    {/*    </Collapse>*/}
+                                    {/*</div>*/}
 
 
                                 </div>
                                 <div className="footer">
-                                    <p>
-                                        Продолжая, вы соглашаетесь с <a href="#" className="font-roboto-medium">Условия соглашения</a> и <a
-                                        href="#" className="font-roboto-medium">Политика конфиденциальности</a>.
-                                        Предоставленная информация заполнена правильно.
-                                    </p>
+                                    {step === 0 ?
+                                        <p className="d-flex align-items-center">
+                                            <input type="checkbox" id="check" className="mr-3"/>
+                                            <label htmlFor="check" className="mb-0">
+                                                Продолжая, я согласшаюсь на обработку и передачу Персональных данных
+                                            </label>
+
+                                            {/*Продолжая, вы соглашаетесь с <a href="#" className="font-roboto-medium">Условия соглашения</a> и <a*/}
+                                            {/*href="#" className="font-roboto-medium">Политика конфиденциальности</a>.*/}
+                                            {/*Предоставленная информация заполнена правильно.*/}
+                                        </p> :
+                                        <p className="d-flex align-items-center">
+                                            <input type="checkbox" id="check" className="mr-3"/>
+                                            <label htmlFor="check" className="mb-0">
+                                                Продолжая, я принимаю <a href="#">Условия пользования</a> и согласен с <a
+                                                href="#">Договором оферты</a>.
+                                            </label>
+
+                                            {/*Продолжая, вы соглашаетесь с <a href="#" className="font-roboto-medium">Условия соглашения</a> и <a*/}
+                                            {/*href="#" className="font-roboto-medium">Политика конфиденциальности</a>.*/}
+                                            {/*Предоставленная информация заполнена правильно.*/}
+                                        </p>
+                                    }
+
+
                                     <button type="button" className="font-roboto-medium btn-block"
-                                            onClick={submitForm}>Продолжать
+                                            onClick={submitForm}>Продолжить
                                     </button>
                                 </div>
                             </AvForm>

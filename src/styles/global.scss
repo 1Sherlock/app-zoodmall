@@ -46,6 +46,14 @@
     mask-image: url("/assets/icons/minus.svg");
     -webkit-mask-image: url("/assets/icons/minus.svg");
   }
+  &.icon-apple{
+    mask-image: url("/assets/icons/apple.svg");
+    -webkit-mask-image: url("/assets/icons/apple.svg");
+  }
+  &.icon-google{
+    mask-image: url("/assets/icons/google.svg");
+    -webkit-mask-image: url("/assets/icons/google.svg");
+  }
 }
 
 html{
@@ -281,6 +289,30 @@ html{
         margin-bottom: 0;
         width: 254px;
         max-width: 100%;
+      }
+    }
+
+    .download{
+      .download-item{
+        border-radius: 46px;
+        border: 1px solid #000000;
+        padding: 17px 31px;
+        font-size: 22px;
+        margin-right: 50px;
+        text-decoration: none;
+        color: #000000;
+        .icon{
+          background-color: #000000;
+          margin-right: 15px;
+          &.icon-google{
+            width: 41px;
+            height: 44px;
+          }
+          &.icon-apple{
+            width: 37px;
+            height: 44px;
+          }
+        }
       }
     }
   }
