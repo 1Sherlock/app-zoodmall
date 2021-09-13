@@ -1,4 +1,5 @@
 @import "fonts.scss";
+
 html,
 body {
   padding: 0;
@@ -50,7 +51,7 @@ button {
 }
 
 
-.icon{
+.icon {
   width: 20px;
   height: 20px;
   display: inline-block;
@@ -64,13 +65,19 @@ button {
 
   background-color: #C4C4C4;
 
-  &.icon-apple{
+  &.icon-apple {
     mask-image: url("/assets/icons/apple.svg");
     -webkit-mask-image: url("/assets/icons/apple.svg");
   }
-  &.icon-google{
+
+  &.icon-google {
     mask-image: url("/assets/icons/google.svg");
     -webkit-mask-image: url("/assets/icons/google.svg");
+  }
+
+  &.icon-plus {
+    mask-image: url("/assets/icons/plus.svg");
+    -webkit-mask-image: url("/assets/icons/plus.svg");
   }
 }
 
@@ -118,9 +125,11 @@ button {
   padding: 0 16px;
   overflow: hidden;
   z-index: 100;
+
   .form {
     margin-top: 50px;
     position: relative;
+
     button {
       position: absolute;
       bottom: 0;
@@ -130,6 +139,7 @@ button {
       margin: auto;
     }
   }
+
   input {
     width: 100%;
     padding: 14px 16px 13px;
@@ -140,14 +150,17 @@ button {
     z-index: 100;
     font-size: 16px;
     line-height: 19px;
+
     &::placeholder {
 
       color: #CACACA;
     }
+
     &.active {
       color: #000;
     }
   }
+
   label {
     display: block;
     margin-bottom: 12px;
@@ -155,6 +168,7 @@ button {
     line-height: 16px;
     color: #4C4C4C;
   }
+
   .logo {
     display: block;
     margin: auto;
@@ -166,12 +180,14 @@ button {
     background-repeat: no-repeat;
     background-position: center;
   }
+
   span {
     b {
       font-weight: normal;
-      color: #303493!important
+      color: #303493 !important
     }
   }
+
   p {
     margin-top: 8px;
     margin-bottom: 0;
@@ -182,18 +198,58 @@ button {
     text-transform: uppercase;
     color: #000;
   }
+
+  h4 {
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 15px;
+    margin-bottom: 24px;
+    color: #CACACA;
+  }
+
+  .line {
+    width: 100%;
+    height: 1px;
+    background-color: #E6E6E6;
+    margin-bottom: 32px;
+    margin-top: 32px;
+  }
+
+  .info {
+    font-size: 12px;
+    line-height: 15px;
+    color: #4C4C4C;
+    margin-bottom: 24px;
+
+    .circle {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      margin-right: 10px;
+      background-color: #303493;
+
+      .icon {
+        width: 8px;
+        height: 8px;
+        background-color: #FFFFFF;
+      }
+    }
+  }
 }
 
 .agrement {
   display: flex;
   align-items: center;
   justify-content: space-between;
+
   svg {
     transform: translatey(22px);
   }
+
   input {
     display: none;
   }
+
   span {
     display: inline-block;
     margin-left: 28px;
@@ -232,6 +288,7 @@ button {
   min-height: 100vh;
   padding: 0px 10px;
   overflow: hidden;
+
   .logo {
     display: block;
     margin: auto;
@@ -243,9 +300,11 @@ button {
     background-repeat: no-repeat;
     background-position: center;
   }
+
   .form {
     margin-top: 50px;
     position: relative;
+
     button {
       position: absolute;
       bottom: 0;
@@ -255,6 +314,7 @@ button {
       margin: auto;
     }
   }
+
   label {
     display: block;
     margin-bottom: 12px;
@@ -262,6 +322,7 @@ button {
     line-height: 16px;
     color: #4C4C4C;
   }
+
   input {
     width: 100%;
     padding: 16px;
@@ -270,18 +331,21 @@ button {
     box-sizing: border-box;
     border-radius: 8px;
     z-index: 100;
+
     &::placeholder {
       font-size: 13px;
       line-height: 15px;
       color: #CACACA;
     }
-    &:disabled{
+
+    &:disabled {
       background: #F6F6F6;
       border: 1px solid #BEBEBE;
       font-size: 16px;
       line-height: 19px;
       color: #4C4C4C;
     }
+
     &.active {
       opacity: 1;
     }
@@ -295,6 +359,7 @@ button {
   min-height: 100vh;
   padding: 0 10px;
   overflow: hidden;
+
   .logo {
     display: block;
     margin: auto;
@@ -306,9 +371,11 @@ button {
     background-repeat: no-repeat;
     background-position: center;
   }
+
   form {
     position: relative;
     margin-top: 52px;
+
     button {
       position: absolute;
       bottom: 0;
@@ -317,10 +384,12 @@ button {
       right: -10%;
       margin: auto;
     }
+
     label {
       font-size: 14px;
       line-height: 16px;
     }
+
     .checkbox {
       display: flex;
       align-items: center;
@@ -328,12 +397,15 @@ button {
       margin-bottom: 8px;
       border-radius: 8px;
       border: 1px solid #BEBEBE;
+
       div {
         margin-left: 12px;
+
         label {
           margin-bottom: 0;
         }
       }
+
       p {
         margin-bottom: 0;
         font-weight: 600;
@@ -344,6 +416,7 @@ button {
           color: #000;
         }
       }
+
       span {
         display: block;
         margin-left: auto;
@@ -353,12 +426,14 @@ button {
       }
     }
   }
+
   label {
     display: block;
     margin-bottom: 12px;
     font-size: 12px;
     line-height: 14px;
   }
+
   input {
     display: none;
   }
@@ -372,6 +447,7 @@ button {
   padding: 0px 10px;
   overflow: hidden;
   justify-content: space-between;
+
   label {
     display: block;
     margin-bottom: 12px;
@@ -379,6 +455,7 @@ button {
     line-height: 16px;
     color: #4C4C4C;
   }
+
   .logo {
     display: block;
     margin: auto;
@@ -391,9 +468,11 @@ button {
     background-repeat: no-repeat;
     background-position: center;
   }
+
   .form {
     position: relative;
     margin-top: 52px;
+
     button {
       position: absolute;
       bottom: 0;
@@ -403,30 +482,37 @@ button {
       margin: auto;
     }
   }
+
   &.active {
     justify-content: flex-start;
   }
+
   p {
     font-size: 12px;
     line-height: 14px;
     text-align: center;
     color: #303493;
-    span {}
+
+    span {
+    }
   }
 
   .inputGroup {
     &.active {
-      color: #000!important;
+      color: #000 !important;
     }
-    .inputGroupAppend{
+
+    .inputGroupAppend {
       font-size: 16px;
     }
   }
+
   .codes {
 
     div {
       display: flex;
     }
+
     input {
       width: 100%;
       height: 48px;
@@ -437,7 +523,8 @@ button {
       border-radius: 4px;
       text-align: center;
       font-size: 25px;
-      &:not(:first-child){
+
+      &:not(:first-child) {
         margin-left: 8px;
       }
     }
@@ -450,13 +537,29 @@ button {
 }
 
 .spinner {
-  justify-self: center;
+  justify-content: center;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  margin-top: 50px;
+  flex-direction: column;
+  min-height: 100vh;
+  text-align: center;
+  text-transform: uppercase;
+
   p {
-    margin-top: 10px;
+    margin-top: 48px;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 15px;
+    color: #CACACA;
+    width: 295px;
+    max-width: 100%;
+  }
+  h5{
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 15px;
+    color: #303493;
+
   }
 }
 
@@ -471,18 +574,22 @@ button {
   box-sizing: border-box;
   border-radius: 8px;
   z-index: 100;
+
   &::placeholder {
     font-size: 13px;
     line-height: 15px;
     color: #BEBEBE;
   }
+
   &.active {
     opacity: 1;
   }
+
   .inputGroupAppend {
     display: flex;
     align-items: center;
   }
+
   .spec {
     padding: 12px 0 12px 16px;
     font-size: 16px;
@@ -490,10 +597,12 @@ button {
     font-size: 13px;
     line-height: 22px;
     letter-spacing: -0.04em;
+
     &::placeholder {
       color: #C0C0C0;
     }
   }
+
   .phoneInput {
     border: none;
     outline: 0;
@@ -502,10 +611,12 @@ button {
     width: 100%;
     border-radius: 16px;
     padding-left: 10px;
+
     &::placeholder {
       color: #B3B4C6;
     }
   }
+
   .clearInput {
     position: absolute;
     right: 16px;
@@ -524,18 +635,22 @@ button {
   display: flex;
   align-items: center;
   justify-content: space-between;
+
   svg {
     transform: translatey(22px);
   }
+
   input {
     display: none;
   }
+
   p {
     display: inline-block;
     margin-left: 28px;
     font-size: 12px;
     line-height: 14px;
     text-align: left;
+
     span {
       margin: 0;
       opacity: .5;
@@ -552,13 +667,16 @@ button {
   min-height: 100vh;
   padding: 0 10px;
   overflow: hidden;
+
   div {
     display: flex;
     flex-direction: column;
     align-items: center;
+
     &:nth-child(1) {
       margin-top: 64px;
     }
+
     p {
       font-weight: 600;
       font-size: 12px;
@@ -567,6 +685,7 @@ button {
       text-transform: uppercase;
       color: #4C4C4C;
       text-align: center;
+
       span {
         margin: 10px 0;
         display: block;
@@ -574,6 +693,7 @@ button {
       }
     }
   }
+
   a {
     display: block;
     margin-bottom: 32px;
@@ -583,8 +703,9 @@ button {
     font-size: 12px;
     line-height: 14px;
     text-transform: uppercase;
-    color: #303493!important;
+    color: #303493 !important;
   }
+
   button {
     width: 200%;
   }
@@ -592,9 +713,11 @@ button {
 
 .ant-select-dropdown.ant-select-dropdown-placement-bottomLeft {
   z-index: 222;
+
   svg {
     fill: #FFFFFF !important
   }
+
   div {
     color: #CACACA !important;
   }
@@ -602,6 +725,7 @@ button {
 
 .firstSelect {
   width: 30% !important;
+
   svg {
     fill: #000 !important
   }
@@ -610,6 +734,7 @@ button {
 .secondSelect {
   width: 30% !important;
   margin-left: 10px !important;
+
   svg {
     fill: #000 !important
   }
@@ -618,6 +743,7 @@ button {
 .lastSelect {
   width: 30% !important;
   margin-left: 10px !important;
+
   svg {
     fill: #000 !important
   }
@@ -631,6 +757,7 @@ button {
   border: 2px solid #ACACAA;
   box-sizing: border-box;
   border-radius: 8px;
+
   &::placeholder {
     font-size: 16px;
     line-height: 19px;
@@ -640,15 +767,18 @@ button {
 .select_wrap {
   display: flex;
   justify-content: space-between;
-  .ant-select:not(.ant-select-customize-input) .ant-select-selector{
+
+  .ant-select:not(.ant-select-customize-input) .ant-select-selector {
     border-color: #BEBEBE;
     border-radius: 4px;
-    padding: 14px 16px 13px!important;
+    padding: 14px 16px 13px !important;
     font-size: 16px;
     line-height: 19px;
-    .ant-select-selection-placeholder{
+
+    .ant-select-selection-placeholder {
       color: #CACACA;
     }
+
     color: #4C4C4C;
   }
 }
@@ -690,8 +820,8 @@ button {
 ;
 }
 
-.download{
-  .download-item{
+.download {
+  .download-item {
     border-radius: 46px;
     border: 1px solid #000000;
     padding: 17px 31px;
@@ -699,14 +829,17 @@ button {
     margin-right: 50px;
     text-decoration: none;
     color: #000000;
-    .icon{
+
+    .icon {
       background-color: #000000;
       margin-right: 15px;
-      &.icon-google{
+
+      &.icon-google {
         width: 41px;
         height: 44px;
       }
-      &.icon-apple{
+
+      &.icon-apple {
         width: 37px;
         height: 44px;
       }
