@@ -846,3 +846,44 @@ button {
     }
   }
 }
+
+.credit-card{
+  padding-top: 64px;
+  h4{
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 15px;
+    color: #00AD27;
+    margin-top: 16px;
+    margin-bottom: 4px;
+  }
+  p{
+    font-size: 14px;
+    line-height: 16px;
+    color: #4C4C4C;
+    margin-bottom: 48px;
+  }
+  .card{
+    border: 1px solid #E6E6E6;
+    box-shadow: 0px 100px 80px rgba(0, 0, 0, 0.00239667), 0px 50.0488px 40.0391px rgba(0, 0, 0, 0.00348411), 0px 30.1471px 24.1177px rgba(0, 0, 0, 0.00429105), 0px 19.3198px 15.4559px rgba(0, 0, 0, 0.005), 0px 12.5216px 10.0172px rgba(0, 0, 0, 0.00570895), 0px 7.88218px 6.30574px rgba(0, 0, 0, 0.00651589), 0px 4.5288px 3.62304px rgba(0, 0, 0, 0.00760333), 0px 1.99324px 1.59459px rgba(0, 0, 0, 0.01);
+    border-radius: 16px;
+    margin-left: 16px;
+    margin-right: 16px;
+    .card-body{
+      padding: 16px;
+      .images{
+        img{
+          width: 32px;
+          height: 32px;
+          margin-left: 16px;
+        }
+        margin-bottom: 16px;
+      }
+      input{
+        background: #FFFFFF;
+        border: 1px solid #BEBEBE;
+        border-radius: 4px;
+      }
+    }
+  }
+}

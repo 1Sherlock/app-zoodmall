@@ -388,7 +388,113 @@ export default function Home() {
                                             <p>Осталось застраховать себя</p>
                                         </div>
 
+                                        <div className="card">
+                                            <div className="card-body">
+                                                <div className="images text-right">
+                                                    <img src="/images/mastercard.png" alt="mastercard.png"/>
+                                                    <img src="/images/uzcard.png" alt="mastercard.png"/>
+                                                    <img src="/images/humo.png" alt="mastercard.png"/>
+                                                </div>
+                                                <input type="number" className="form-control" placeholder="Номер карты"/>
+                                                <div className="select_wrap">
+                                                    <Select
+                                                        className={"  secondSelect "}
+                                                        style={{width: 200}}
+                                                        placeholder="Месяц"
+                                                        optionFilterProp="children"
+                                                        onChange={(v) => onChange(v, 'month')}
+                                                        onClick={(e) => {
+                                                            document.querySelector(".secondSelect").querySelector(".ant-select-selector").style.opacity = "1"
+                                                        }}
+                                                        filterOption={(input, option) =>
+                                                            option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                                                        }
+                                                        dropdownStyle={{backgroundColor: 'transparent', backdropFilter: "blur(200px)"}}
+                                                        dropdownClassName="dropdown"
+                                                    >
+                                                        <Option value="01">Январ</Option>
+                                                        <Option value="02">Феврал</Option>
+                                                        <Option value="03">Март</Option>
+                                                        <Option value="04">Апрел</Option>
+                                                        <Option value="05">Май</Option>
+                                                        <Option value="06">Июн</Option>
+                                                        <Option value="07">Июл</Option>
+                                                        <Option value="08">Август</Option>
+                                                        <Option value="09">Сентяб</Option>
+                                                        <Option value="10">Октябр</Option>
+                                                        <Option value="11">Ноябр</Option>
 
+
+                                                    </Select>
+                                                    <Select
+                                                        className={"  lastSelect "}
+                                                        style={{width: 200}}
+                                                        placeholder="Год"
+                                                        optionFilterProp="children"
+                                                        onChange={(v) => onChange(v, 'year')}
+                                                        dropdownStyle={{backgroundColor: 'transparent', backdropFilter: "blur(200px)"}}
+                                                        dropdownClassName="dropdown"
+                                                        filterOption={(input, option) =>
+                                                            option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                                                        }
+                                                        onClick={(e) => {
+                                                            document.querySelector(".lastSelect").querySelector(".ant-select-selector").style.opacity = "1"
+                                                        }}
+
+                                                    >
+                                                        {Array.from({length: 112}, (v, k) => 2012 - k).map((item) => (
+                                                            <Option value={item}>{item}</Option>
+                                                        ))}
+                                                    </Select>
+                                                    <input type="number" placeholder="CVC" className="form-control h-auto"/>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <label className="agrement">{
+                                            state3 ? <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                                          xmlns="http://www.w3.org/2000/svg">
+                                                    <path
+                                                        d="M13.6566 13.6566C16.7811 10.532 16.7811 5.46801 13.6566 2.34343C10.532 -0.781145 5.46801 -0.781145 2.34343 2.34343C-0.781145 5.46801 -0.781145 10.532 2.34343 13.6566C5.46801 16.7811 10.5353 16.7811 13.6566 13.6566ZM5.13172 6.77727L6.93072 8.57627L10.8715 4.63871L12.2657 6.03285L8.32813 9.97041L6.93072 11.3646L5.53658 9.97041L3.73758 8.17141L5.13172 6.77727Z"
+                                                        fill="#303493"/>
+                                                </svg>
+                                                : <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                                       xmlns="http://www.w3.org/2000/svg">
+                                                    <rect opacity="0.4" x="0.5" y="0.5" width="15" height="15" rx="7.5"
+                                                          stroke="#818181"/>
+                                                </svg>
+                                        }
+                                            <input type="checkbox" value={state3}/>
+                                            <span onClick={() => setState3(!state3)}>Продолжая, я согласшаюсь на <b>Обработку и передачу персональных данных.</b></span>
+                                        </label>
+                                        <div className="codes">
+                                            <label htmlFor="num">Введите код из SMS</label>
+                                            <div>
+                                                <input id="num" type="text" maxLength="1"
+                                                       pattern="[0-9]+"/>
+                                                <input type="text" maxLength="1" pattern="[0-9]+"/>
+                                                <input type="text" maxLength="1" pattern="[0-9]+"/>
+                                                <input type="text" maxLength="1" pattern="[0-9]+"/>
+                                                <input type="text" maxLength="1" pattern="[0-9]+"/>
+                                            </div>
+                                        </div>
+                                        <label className="agrement">{
+                                            state3 ? <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                                          xmlns="http://www.w3.org/2000/svg">
+                                                    <path
+                                                        d="M13.6566 13.6566C16.7811 10.532 16.7811 5.46801 13.6566 2.34343C10.532 -0.781145 5.46801 -0.781145 2.34343 2.34343C-0.781145 5.46801 -0.781145 10.532 2.34343 13.6566C5.46801 16.7811 10.5353 16.7811 13.6566 13.6566ZM5.13172 6.77727L6.93072 8.57627L10.8715 4.63871L12.2657 6.03285L8.32813 9.97041L6.93072 11.3646L5.53658 9.97041L3.73758 8.17141L5.13172 6.77727Z"
+                                                        fill="#303493"/>
+                                                </svg>
+                                                : <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                                       xmlns="http://www.w3.org/2000/svg">
+                                                    <rect opacity="0.4" x="0.5" y="0.5" width="15" height="15" rx="7.5"
+                                                          stroke="#818181"/>
+                                                </svg>
+                                        }
+                                            <input type="checkbox" value={state3}/>
+                                            <span onClick={() => setState3(!state3)}>Продолжая, я согласшаюсь на <b>Обработку и передачу персональных данных.</b></span>
+                                        </label>
 
                                     </div> :
                                     status === 7 ?
