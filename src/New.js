@@ -382,119 +382,122 @@ export default function Home() {
                                 </div> :
                                 status === 4 ?
                                     <div className="credit-card">
-                                        <div className="text-center">
-                                            <img src="/images/smile.svg" alt="smile.svg"/>
-                                            <h4>ПОЗДРАВЛЯЕМ!</h4>
-                                            <p>Осталось застраховать себя</p>
-                                        </div>
-
-                                        <div className="card">
-                                            <div className="card-body">
-                                                <div className="images text-right">
-                                                    <img src="/images/mastercard.png" alt="mastercard.png"/>
-                                                    <img src="/images/uzcard.png" alt="mastercard.png"/>
-                                                    <img src="/images/humo.png" alt="mastercard.png"/>
-                                                </div>
-                                                <input type="number" className="form-control" placeholder="Номер карты"/>
-                                                <div className="select_wrap">
-                                                    <Select
-                                                        className={"  secondSelect "}
-                                                        style={{width: 200}}
-                                                        placeholder="Месяц"
-                                                        optionFilterProp="children"
-                                                        onChange={(v) => onChange(v, 'month')}
-                                                        onClick={(e) => {
-                                                            document.querySelector(".secondSelect").querySelector(".ant-select-selector").style.opacity = "1"
-                                                        }}
-                                                        filterOption={(input, option) =>
-                                                            option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-                                                        }
-                                                        dropdownStyle={{backgroundColor: 'transparent', backdropFilter: "blur(200px)"}}
-                                                        dropdownClassName="dropdown"
-                                                    >
-                                                        <Option value="01">Январ</Option>
-                                                        <Option value="02">Феврал</Option>
-                                                        <Option value="03">Март</Option>
-                                                        <Option value="04">Апрел</Option>
-                                                        <Option value="05">Май</Option>
-                                                        <Option value="06">Июн</Option>
-                                                        <Option value="07">Июл</Option>
-                                                        <Option value="08">Август</Option>
-                                                        <Option value="09">Сентяб</Option>
-                                                        <Option value="10">Октябр</Option>
-                                                        <Option value="11">Ноябр</Option>
-
-
-                                                    </Select>
-                                                    <Select
-                                                        className={"  lastSelect "}
-                                                        style={{width: 200}}
-                                                        placeholder="Год"
-                                                        optionFilterProp="children"
-                                                        onChange={(v) => onChange(v, 'year')}
-                                                        dropdownStyle={{backgroundColor: 'transparent', backdropFilter: "blur(200px)"}}
-                                                        dropdownClassName="dropdown"
-                                                        filterOption={(input, option) =>
-                                                            option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-                                                        }
-                                                        onClick={(e) => {
-                                                            document.querySelector(".lastSelect").querySelector(".ant-select-selector").style.opacity = "1"
-                                                        }}
-
-                                                    >
-                                                        {Array.from({length: 112}, (v, k) => 2012 - k).map((item) => (
-                                                            <Option value={item}>{item}</Option>
-                                                        ))}
-                                                    </Select>
-                                                    <input type="number" placeholder="CVC" className="form-control h-auto"/>
-                                                </div>
+                                        <div>
+                                            <div className="text-center">
+                                                <img src="/images/smile.svg" alt="smile.svg"/>
+                                                <h4>ПОЗДРАВЛЯЕМ!</h4>
+                                                <p>Осталось застраховать себя</p>
                                             </div>
 
+                                            <div className="card">
+                                                <div className="card-body">
+                                                    <div className="images text-right">
+                                                        <img src="/images/mastercard.png" alt="mastercard.png"/>
+                                                        <img src="/images/uzcard.png" alt="mastercard.png"/>
+                                                        <img src="/images/humo.png" alt="mastercard.png"/>
+                                                    </div>
+                                                    <input type="number" className="form-control" placeholder="Номер карты"/>
+                                                    <div className="select_wrap">
+                                                        <Select
+                                                            placeholder="Месяц"
+                                                            optionFilterProp="children"
+                                                            onChange={(v) => onChange(v, 'month')}
+                                                            onClick={(e) => {
+                                                                document.querySelector(".secondSelect").querySelector(".ant-select-selector").style.opacity = "1"
+                                                            }}
+                                                            filterOption={(input, option) =>
+                                                                option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                                                            }
+                                                            dropdownStyle={{backgroundColor: 'transparent', backdropFilter: "blur(200px)"}}
+                                                            dropdownClassName="dropdown"
+                                                        >
+                                                            <Option value="01">Январ</Option>
+                                                            <Option value="02">Феврал</Option>
+                                                            <Option value="03">Март</Option>
+                                                            <Option value="04">Апрел</Option>
+                                                            <Option value="05">Май</Option>
+                                                            <Option value="06">Июн</Option>
+                                                            <Option value="07">Июл</Option>
+                                                            <Option value="08">Август</Option>
+                                                            <Option value="09">Сентяб</Option>
+                                                            <Option value="10">Октябр</Option>
+                                                            <Option value="11">Ноябр</Option>
+
+
+                                                        </Select>
+                                                        <Select
+                                                            className="select"
+                                                            placeholder="Год"
+                                                            optionFilterProp="children"
+                                                            onChange={(v) => onChange(v, 'year')}
+                                                            dropdownStyle={{backgroundColor: 'transparent', backdropFilter: "blur(200px)"}}
+                                                            dropdownClassName="dropdown"
+                                                            filterOption={(input, option) =>
+                                                                option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                                                            }
+                                                            onClick={(e) => {
+                                                                document.querySelector(".lastSelect").querySelector(".ant-select-selector").style.opacity = "1"
+                                                            }}
+
+                                                        >
+                                                            {Array.from({length: 112}, (v, k) => 2012 - k).map((item) => (
+                                                                <Option value={item}>{item}</Option>
+                                                            ))}
+                                                        </Select>
+                                                        <input type="number" placeholder="CVC" className="form-control h-auto"/>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div className="codes">
+                                                <label htmlFor="num">Введите код из SMS</label>
+                                                <div>
+                                                    <input id="num" type="text" maxLength="1"
+                                                           pattern="[0-9]+"/>
+                                                    <input type="text" maxLength="1" pattern="[0-9]+"/>
+                                                    <input type="text" maxLength="1" pattern="[0-9]+"/>
+                                                    <input type="text" maxLength="1" pattern="[0-9]+"/>
+                                                    <input type="text" maxLength="1" pattern="[0-9]+"/>
+                                                </div>
+                                            </div>
+                                            <label className="agrement">{
+                                                state3 ? <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                                              xmlns="http://www.w3.org/2000/svg">
+                                                        <path
+                                                            d="M13.6566 13.6566C16.7811 10.532 16.7811 5.46801 13.6566 2.34343C10.532 -0.781145 5.46801 -0.781145 2.34343 2.34343C-0.781145 5.46801 -0.781145 10.532 2.34343 13.6566C5.46801 16.7811 10.5353 16.7811 13.6566 13.6566ZM5.13172 6.77727L6.93072 8.57627L10.8715 4.63871L12.2657 6.03285L8.32813 9.97041L6.93072 11.3646L5.53658 9.97041L3.73758 8.17141L5.13172 6.77727Z"
+                                                            fill="#303493"/>
+                                                    </svg>
+                                                    : <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                                           xmlns="http://www.w3.org/2000/svg">
+                                                        <rect opacity="0.4" x="0.5" y="0.5" width="15" height="15" rx="7.5"
+                                                              stroke="#818181"/>
+                                                    </svg>
+                                            }
+                                                <input type="checkbox" value={state3}/>
+                                                <span onClick={() => setState3(!state3)}>Продолжая, я принимаю <a
+                                                    href="#">Условия пользования и согласен с Договором оферты</a>.</span>
+                                            </label>
+
+                                            <label className="agrement mb">{
+                                                state3 ? <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                                              xmlns="http://www.w3.org/2000/svg">
+                                                        <path
+                                                            d="M13.6566 13.6566C16.7811 10.532 16.7811 5.46801 13.6566 2.34343C10.532 -0.781145 5.46801 -0.781145 2.34343 2.34343C-0.781145 5.46801 -0.781145 10.532 2.34343 13.6566C5.46801 16.7811 10.5353 16.7811 13.6566 13.6566ZM5.13172 6.77727L6.93072 8.57627L10.8715 4.63871L12.2657 6.03285L8.32813 9.97041L6.93072 11.3646L5.53658 9.97041L3.73758 8.17141L5.13172 6.77727Z"
+                                                            fill="#303493"/>
+                                                    </svg>
+                                                    : <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                                           xmlns="http://www.w3.org/2000/svg">
+                                                        <rect opacity="0.4" x="0.5" y="0.5" width="15" height="15" rx="7.5"
+                                                              stroke="#818181"/>
+                                                    </svg>
+                                            }
+                                                <input type="checkbox" value={state3}/>
+                                                <span onClick={() => setState3(!state3)}>Продолжая, я согласен с <a
+                                                    href="#">Кредитным договором и даю согласие на перевод средств в компанию поставщика услуг</a>. </span>
+                                            </label>
                                         </div>
 
-                                        <label className="agrement">{
-                                            state3 ? <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                                          xmlns="http://www.w3.org/2000/svg">
-                                                    <path
-                                                        d="M13.6566 13.6566C16.7811 10.532 16.7811 5.46801 13.6566 2.34343C10.532 -0.781145 5.46801 -0.781145 2.34343 2.34343C-0.781145 5.46801 -0.781145 10.532 2.34343 13.6566C5.46801 16.7811 10.5353 16.7811 13.6566 13.6566ZM5.13172 6.77727L6.93072 8.57627L10.8715 4.63871L12.2657 6.03285L8.32813 9.97041L6.93072 11.3646L5.53658 9.97041L3.73758 8.17141L5.13172 6.77727Z"
-                                                        fill="#303493"/>
-                                                </svg>
-                                                : <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                                       xmlns="http://www.w3.org/2000/svg">
-                                                    <rect opacity="0.4" x="0.5" y="0.5" width="15" height="15" rx="7.5"
-                                                          stroke="#818181"/>
-                                                </svg>
-                                        }
-                                            <input type="checkbox" value={state3}/>
-                                            <span onClick={() => setState3(!state3)}>Продолжая, я согласшаюсь на <b>Обработку и передачу персональных данных.</b></span>
-                                        </label>
-                                        <div className="codes">
-                                            <label htmlFor="num">Введите код из SMS</label>
-                                            <div>
-                                                <input id="num" type="text" maxLength="1"
-                                                       pattern="[0-9]+"/>
-                                                <input type="text" maxLength="1" pattern="[0-9]+"/>
-                                                <input type="text" maxLength="1" pattern="[0-9]+"/>
-                                                <input type="text" maxLength="1" pattern="[0-9]+"/>
-                                                <input type="text" maxLength="1" pattern="[0-9]+"/>
-                                            </div>
-                                        </div>
-                                        <label className="agrement">{
-                                            state3 ? <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                                          xmlns="http://www.w3.org/2000/svg">
-                                                    <path
-                                                        d="M13.6566 13.6566C16.7811 10.532 16.7811 5.46801 13.6566 2.34343C10.532 -0.781145 5.46801 -0.781145 2.34343 2.34343C-0.781145 5.46801 -0.781145 10.532 2.34343 13.6566C5.46801 16.7811 10.5353 16.7811 13.6566 13.6566ZM5.13172 6.77727L6.93072 8.57627L10.8715 4.63871L12.2657 6.03285L8.32813 9.97041L6.93072 11.3646L5.53658 9.97041L3.73758 8.17141L5.13172 6.77727Z"
-                                                        fill="#303493"/>
-                                                </svg>
-                                                : <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                                       xmlns="http://www.w3.org/2000/svg">
-                                                    <rect opacity="0.4" x="0.5" y="0.5" width="15" height="15" rx="7.5"
-                                                          stroke="#818181"/>
-                                                </svg>
-                                        }
-                                            <input type="checkbox" value={state3}/>
-                                            <span onClick={() => setState3(!state3)}>Продолжая, я согласшаюсь на <b>Обработку и передачу персональных данных.</b></span>
-                                        </label>
+                                        <button className="btn_submit" onClick={() => setStatus(5)}>Далее</button>
 
                                     </div> :
                                     status === 7 ?
@@ -571,18 +574,10 @@ export default function Home() {
                                         </div> :
                                         status === 5 ?
                                             <>
-                                                <div className={`${loading ? "active" : ""}  five`}>
+                                                <div className="five">
                                                     {/* eslint-disable-next-line jsx-a11y/anchor-has-content,jsx-a11y/anchor-is-valid */}
                                                     <a href="#" className="logo"/>
 
-                                                    {loading ?
-                                                        <div className="spinner"><FadeLoader color="#FEC50C" height="25"
-                                                                                             width="7"
-                                                                                             radius="40"
-                                                                                             margin="20"/> <p>Желательно
-                                                            не
-                                                            закрывайте это
-                                                            окно или приложение.</p></div> :
                                                         <form className="form" onSubmit={submitForm}>
                                                             <div className="firstNumber">
                                                                 <label htmlFor="phoneNumber">Введите Ваш номер
@@ -681,36 +676,85 @@ export default function Home() {
                                                                         onClick={() => setStatus(6)}>Далее
                                                                 </button>
                                                             </div>
-                                                        </form>}
+                                                        </form>
 
 
                                                 </div>
                                             </> :
                                             <div className="last">
-                                                <div>
-                                                    <svg width="49" height="48" viewBox="0 0 49 48" fill="none"
-                                                         xmlns="http://www.w3.org/2000/svg">
-                                                        <path
-                                                            d="M24.4999 0C11.2664 0 0.5 10.7664 0.5 24.0001C0.5 37.2337 11.2664 48 24.4999 48C37.7335 48 48.4999 37.2336 48.4999 24.0001C48.4999 10.7665 37.7336 0 24.4999 0ZM24.4999 44.4851C13.2045 44.4851 4.01495 35.2955 4.01495 24.0001C4.01495 12.7047 13.2045 3.51506 24.4999 3.51506C35.7953 3.51506 44.9849 12.7047 44.9849 24.0001C44.9849 35.2955 35.7955 44.4851 24.4999 44.4851Z"
-                                                            fill="#00AD27"/>
-                                                        <path
-                                                            d="M34.981 28.4633C34.2443 27.8314 33.1347 27.9162 32.5029 28.6531C30.4961 30.9926 27.5791 32.3345 24.4999 32.3345C21.4209 32.3345 18.504 30.9927 16.4972 28.6532C15.8652 27.9165 14.7558 27.8316 14.019 28.4635C13.2823 29.0955 13.1974 30.205 13.8293 30.9417C16.5047 34.0606 20.3941 35.8495 24.5 35.8495C28.6061 35.8495 32.4955 34.0606 35.1708 30.9414C35.8027 30.2048 35.7177 29.0952 34.981 28.4633Z"
-                                                            fill="#00AD27"/>
-                                                        <path
-                                                            d="M14.7432 21.2358C15.7138 21.2358 16.5007 20.4489 16.5007 19.4783C16.5007 18.9149 16.9591 18.4564 17.5226 18.4564C18.086 18.4564 18.5445 18.9149 18.5445 19.4783C18.5445 20.4489 19.3314 21.2358 20.302 21.2358C21.2726 21.2358 22.0594 20.4489 22.0594 19.4783C22.0594 16.9767 20.0242 14.9415 17.5226 14.9415C15.021 14.9415 12.9857 16.9767 12.9857 19.4783C12.9857 20.449 13.7726 21.2358 14.7432 21.2358Z"
-                                                            fill="#00AD27"/>
-                                                        <path
-                                                            d="M31.4774 14.9416C28.9758 14.9416 26.9406 16.9769 26.9406 19.4785C26.9406 20.449 27.7274 21.2359 28.698 21.2359C29.6686 21.2359 30.4555 20.449 30.4555 19.4785C30.4555 18.915 30.914 18.4565 31.4774 18.4565C32.0409 18.4565 32.4993 18.915 32.4993 19.4785C32.4993 20.449 33.2862 21.2359 34.2568 21.2359C35.2274 21.2359 36.0143 20.449 36.0143 19.4785C36.0143 16.9767 33.979 14.9416 31.4774 14.9416Z"
-                                                            fill="#00AD27"/>
-                                                    </svg>
-                                                    <p><span>ПОЗДРАВЛЯЕМ!</span>
-                                                        ВЫ получили кредит и оплатили товар</p>
-                                                </div>
+                                              <div>
+                                                  <div className="text-center congratulations">
+                                                      <span className="icon icon-secure"/>
+                                                      <p><span>ПОЗДРАВЛЯЕМ!</span> <br/>
+                                                          Вы получили кредит и оплатили товар</p>
+                                                  </div>
+
+
+                                                  <div className="checkbox">
+                                                      {
+                                                          state5 ?
+                                                              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                                                   xmlns="http://www.w3.org/2000/svg">
+                                                                  <path
+                                                                      d="M13.6566 13.6566C16.7811 10.532 16.7811 5.46801 13.6566 2.34343C10.532 -0.781145 5.46801 -0.781145 2.34343 2.34343C-0.781145 5.46801 -0.781145 10.532 2.34343 13.6566C5.46801 16.7811 10.5353 16.7811 13.6566 13.6566ZM5.13172 6.77727L6.93072 8.57627L10.8715 4.63871L12.2657 6.03285L8.32813 9.97041L6.93072 11.3646L5.53658 9.97041L3.73758 8.17141L5.13172 6.77727Z"
+                                                                      fill="#303493"/>
+                                                              </svg> :
+                                                              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                                                   xmlns="http://www.w3.org/2000/svg">
+                                                                  <rect opacity="0.4" x="0.5" y="0.5" width="15"
+                                                                        height="15"
+                                                                        rx="7.5"
+                                                                        stroke="#818181"/>
+                                                              </svg>
+
+                                                      }
+                                                      <div>
+                                                          <label>
+                                                              <input type="checkbox" className="d-none" value={state5}
+                                                                     onChange={() => setState5(!state5)}/>
+                                                              <p>350,000 UZS</p>
+                                                              <span>в течении 6 месяцев</span>
+                                                          </label>
+                                                      </div>
+                                                      <span>26% годовых</span>
+                                                  </div>
+
+                                                  <table className="table table-striped table-borderless text-center table-sm">
+                                                      <thead>
+                                                      <tr>
+                                                          <th>ДАТА</th>
+                                                          <th>СУММА</th>
+                                                      </tr>
+                                                      </thead>
+                                                      <tbody>
+                                                      <tr>
+                                                          <td>10 сентября</td>
+                                                          <td>605,000.10 UZS</td>
+                                                      </tr>
+                                                      <tr>
+                                                          <td>10 сентября</td>
+                                                          <td>605,000.10 UZS</td>
+                                                      </tr>
+                                                      <tr>
+                                                          <td>10 сентября</td>
+                                                          <td>605,000.10 UZS</td>
+                                                      </tr>
+                                                      <tr>
+                                                          <td>10 сентября</td>
+                                                          <td>605,000.10 UZS</td>
+                                                      </tr>
+                                                      <tr>
+                                                          <td>10 сентября</td>
+                                                          <td>605,000.10 UZS</td>
+                                                      </tr>
+                                                      </tbody>
+                                                  </table>
+                                              </div>
 
                                                 <div>
 
                                                     {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                                                    <a href="#">Посмотреть график выплат</a>
+                                                    <a href="#">ЗАГРУЗИТЬ БОЛЬШЕ</a>
 
                                                     <button className="btn_submit" type="button"
                                                             onClick={() => setStatus(1)}>Ваши
