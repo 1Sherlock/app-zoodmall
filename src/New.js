@@ -5,12 +5,12 @@ import axios from "axios";
 import {useMediaQuery} from 'react-responsive'
 import {toast, ToastContainer} from 'react-toastify';
 
-import {useRef, useState} from 'react';
+import {useEffect, useRef, useState} from 'react';
 import {API_PATH} from "./tools/constants";
 import {FadeLoader} from "react-spinners";
 import * as https from "https";
 
-export default function Home() {
+export default function Home(props) {
     process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
     const [state2, setState2] = useState(false)
@@ -119,16 +119,29 @@ export default function Home() {
         if (day > 0 && month > 0 && year > 0 && state3) {
             setIsLoading(true);
 
-            const DOB = "Customer.DateOfBirth=" + day + "." + month + "." + year;
-            const AGREEMENT = "Customer.Agreement=true";
-            let param = "";
+            // const DOB = "Customer.DateOfBirth=" + day + "." + month + "." + year;
+            // const AGREEMENT = "Customer.Agreement=true";
+            // let param = "";
 
-            if (type === 0) {
-                param = "Customer.PassportSerial=" + number.slice(0, 2) + "&Customer.PassportNumber=" + number.slice(3);
-            } else {
-                param = "Customer.PINFL=" + number;
-            }
-            axios.post(API_PATH + "customerIdentification?" + DOB + "&" + param + "&" + AGREEMENT,{}, {
+            // if (type === 0) {
+            //     param = "Customer.PassportSerial=" + number.slice(0, 2) + "&Customer.PassportNumber=" + number.slice(3);
+            // } else {
+            //     param = "Customer.PINFL=" + number;
+            // }
+            axios.post(API_PATH + "scoring/customerIdentification",{
+                 customer: type === 0 ? {
+                     passportSerial: number.slice(0, 2),
+                     passportNumber: number.slice(3),
+                     agreement: true,
+                     dateOfBirth: day + "." + month + "." + year
+                 } : {
+                     pinfl: number,
+                     agreement: true,
+                     dateOfBirth: day + "." + month + "." + year
+                 },
+                userId: props.match.params.userId,
+                transactionId: props.match.params.transactionId
+            }, {
                 httpsAgent: new https.Agent({
                     rejectUnauthorized: false
                 })
@@ -137,13 +150,13 @@ export default function Home() {
                     if (res.status === 200 && res.data.fullName) {
                         setData({
                             ...res.data,
-                            address2: res.data.address.slice(res.data.address.indexOf(',', res.data.address.length / 2) + 1),
-                            address: res.data.address.slice(0, res.data.address.indexOf(',', res.data.address.length / 2))
+                            address2: res.data.address.indexOf(',') > 0 ? res.data.address.slice(res.data.address.indexOf(',', res.data.address.length / 2) + 1) : "",
+                            address: res.data.address.indexOf(',') > 0 ? res.data.address.slice(0, res.data.address.indexOf(',', res.data.address.length / 2)): res.data.address
                         });
 
-                        setStatus(3);
-                    } else if (res.data.message === "") {
-                        toast.error("");
+                        setStatus(2);
+                    } else if (res.data.message === "Customer Not Found") {
+                        toast.error("Пользователь с этими данными не найден");
                     }
                 })
                 .catch((e) => {
@@ -262,17 +275,18 @@ export default function Home() {
                                         dropdownStyle={{backgroundColor: 'transparent', backdropFilter: "blur(200px)"}}
                                         dropdownClassName="dropdown"
                                     >
-                                        <Option value="01">Январ</Option>
-                                        <Option value="02">Феврал</Option>
+                                        <Option value="01">Январь</Option>
+                                        <Option value="02">Февраль</Option>
                                         <Option value="03">Март</Option>
-                                        <Option value="04">Апрел</Option>
+                                        <Option value="04">Апрель</Option>
                                         <Option value="05">Май</Option>
-                                        <Option value="06">Июн</Option>
-                                        <Option value="07">Июл</Option>
+                                        <Option value="06">Июнь</Option>
+                                        <Option value="07">Июль</Option>
                                         <Option value="08">Август</Option>
-                                        <Option value="09">Сентяб</Option>
-                                        <Option value="10">Октябр</Option>
-                                        <Option value="11">Ноябр</Option>
+                                        <Option value="09">Сентябь</Option>
+                                        <Option value="10">Октябрь</Option>
+                                        <Option value="11">Ноябрь</Option>
+                                        <Option value="11">Декабрь</Option>
 
 
                                     </Select>
@@ -418,17 +432,18 @@ export default function Home() {
                                                             }}
                                                             dropdownClassName="dropdown"
                                                         >
-                                                            <Option value="01">Январ</Option>
-                                                            <Option value="02">Феврал</Option>
+                                                            <Option value="01">Январь</Option>
+                                                            <Option value="02">Февраль</Option>
                                                             <Option value="03">Март</Option>
-                                                            <Option value="04">Апрел</Option>
+                                                            <Option value="04">Апрель</Option>
                                                             <Option value="05">Май</Option>
-                                                            <Option value="06">Июн</Option>
-                                                            <Option value="07">Июл</Option>
+                                                            <Option value="06">Июнь</Option>
+                                                            <Option value="07">Июль</Option>
                                                             <Option value="08">Август</Option>
-                                                            <Option value="09">Сентяб</Option>
-                                                            <Option value="10">Октябр</Option>
-                                                            <Option value="11">Ноябр</Option>
+                                                            <Option value="09">Сентябь</Option>
+                                                            <Option value="10">Октябрь</Option>
+                                                            <Option value="11">Ноябрь</Option>
+                                                            <Option value="11">Декабрь</Option>
 
 
                                                         </Select>
