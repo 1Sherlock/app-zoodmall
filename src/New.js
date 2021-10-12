@@ -1,13 +1,13 @@
-import {Select} from 'antd'
+import { Select } from 'antd'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'antd/dist/antd.css';
 import axios from "axios";
-import {useMediaQuery} from 'react-responsive'
-import {toast, ToastContainer} from 'react-toastify';
+import { useMediaQuery } from 'react-responsive'
+import { toast, ToastContainer } from 'react-toastify';
 
-import {useEffect, useRef, useState} from 'react';
-import {API_PATH} from "./tools/constants";
-import {FadeLoader} from "react-spinners";
+import { useEffect, useRef, useState } from 'react';
+import { API_PATH } from "./tools/constants";
+import { FadeLoader } from "react-spinners";
 import * as https from "https";
 
 export default function Home(props) {
@@ -24,6 +24,12 @@ export default function Home(props) {
     const [status, setStatus] = useState(1)
     const [isLoading, setIsLoading] = useState(false);
 
+
+    const [checkbox, setCheckbox] = useState(true)
+    const [checkbox2, setCheckbox2] = useState(false)
+    const [codes,setCodes] = useState(false)
+    const [codes2,setCodes2] = useState(false)
+
     const [day, setDay] = useState(0);
     const [month, setMonth] = useState(0);
     const [year, setYear] = useState(0);
@@ -33,7 +39,7 @@ export default function Home(props) {
 
     const inputValue2 = useRef()
 
-    const {Option} = Select;
+    const { Option } = Select;
 
     function click() {
         setStatus(5)
@@ -128,17 +134,17 @@ export default function Home(props) {
             // } else {
             //     param = "Customer.PINFL=" + number;
             // }
-            axios.post(API_PATH + "scoring/customerIdentification",{
-                 customer: type === 0 ? {
-                     passportSerial: number.slice(0, 2),
-                     passportNumber: number.slice(3),
-                     agreement: true,
-                     dateOfBirth: day + "." + month + "." + year
-                 } : {
-                     pinfl: number,
-                     agreement: true,
-                     dateOfBirth: day + "." + month + "." + year
-                 },
+            axios.post(API_PATH + "scoring/customerIdentification", {
+                customer: type === 0 ? {
+                    passportSerial: number.slice(0, 2),
+                    passportNumber: number.slice(3),
+                    agreement: true,
+                    dateOfBirth: day + "." + month + "." + year
+                } : {
+                    pinfl: number,
+                    agreement: true,
+                    dateOfBirth: day + "." + month + "." + year
+                },
                 userId: props.match.params.userId,
                 transactionId: props.match.params.transactionId
             }, {
@@ -151,7 +157,7 @@ export default function Home(props) {
                         setData({
                             ...res.data,
                             address2: res.data.address.indexOf(',') > 0 ? res.data.address.slice(res.data.address.indexOf(',', res.data.address.length / 2) + 1) : "",
-                            address: res.data.address.indexOf(',') > 0 ? res.data.address.slice(0, res.data.address.indexOf(',', res.data.address.length / 2)): res.data.address
+                            address: res.data.address.indexOf(',') > 0 ? res.data.address.slice(0, res.data.address.indexOf(',', res.data.address.length / 2)) : res.data.address
                         });
 
                         setStatus(2);
@@ -181,13 +187,13 @@ export default function Home(props) {
 
                 <div className="d-flex download justify-content-center">
                     <a href="https://play.google.com/store/apps/details?id=com.zoodel.kz" target="_blank"
-                       className="download-item font-roboto-medium d-flex align-items-center" rel="noreferrer">
-                        <span className="icon icon-google"/>
+                        className="download-item font-roboto-medium d-flex align-items-center" rel="noreferrer">
+                        <span className="icon icon-google" />
                         Google play
                     </a>
                     <a href="https://apps.apple.com/app/id1281450163?mt=8" target="_blank"
-                       className="download-item font-roboto-medium d-flex align-items-center" rel="noreferrer">
-                        <span className="icon icon-apple"/>
+                        className="download-item font-roboto-medium d-flex align-items-center" rel="noreferrer">
+                        <span className="icon icon-apple" />
                         App Store
                     </a>
                 </div>
@@ -199,12 +205,12 @@ export default function Home(props) {
 
 
                             {/* eslint-disable-next-line jsx-a11y/anchor-has-content,jsx-a11y/anchor-is-valid */}
-                            <a href="#" className="logo"/>
+                            <a href="#" className="logo" />
 
                             <form className="form" onSubmit={sendFirst}>
                                 <label htmlFor="data">Введите серийный номер паспорта или ПИНФЛ:</label>
                                 <input autoComplete="off" type="text" id="data" value={number}
-                                       onChange={changeNumber} name="pinfl" placeholder="Введите данные"/>
+                                    onChange={changeNumber} name="pinfl" placeholder="Введите данные" />
 
                                 <label htmlFor="day">Введите, дату рождения:</label>
                                 <div className="select_wrap">
@@ -212,10 +218,10 @@ export default function Home(props) {
                                     <Select
                                         id="day"
                                         className={"firstSelect"}
-                                        style={{width: 200}}
+                                        style={{ width: 200 }}
                                         placeholder="День"
                                         optionFilterProp="children"
-                                        dropdownStyle={{backgroundColor: 'transparent', backdropFilter: "blur(200px)"}}
+                                        dropdownStyle={{ backgroundColor: 'transparent', backdropFilter: "blur(200px)" }}
                                         dropdownClassName="dropdown"
                                         name="nizom"
                                         onClick={(e) => {
@@ -262,7 +268,7 @@ export default function Home(props) {
                                     </Select>
                                     <Select
                                         className={"  secondSelect "}
-                                        style={{width: 200}}
+                                        style={{ width: 200 }}
                                         placeholder="Месяц"
                                         optionFilterProp="children"
                                         onChange={(v) => onChange(v, 'month')}
@@ -272,7 +278,7 @@ export default function Home(props) {
                                         filterOption={(input, option) =>
                                             option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
                                         }
-                                        dropdownStyle={{backgroundColor: 'transparent', backdropFilter: "blur(200px)"}}
+                                        dropdownStyle={{ backgroundColor: 'transparent', backdropFilter: "blur(200px)" }}
                                         dropdownClassName="dropdown"
                                     >
                                         <Option value="01">Январь</Option>
@@ -292,11 +298,11 @@ export default function Home(props) {
                                     </Select>
                                     <Select
                                         className={"  lastSelect "}
-                                        style={{width: 200}}
+                                        style={{ width: 200 }}
                                         placeholder="Год"
                                         optionFilterProp="children"
                                         onChange={(v) => onChange(v, 'year')}
-                                        dropdownStyle={{backgroundColor: 'transparent', backdropFilter: "blur(200px)"}}
+                                        dropdownStyle={{ backgroundColor: 'transparent', backdropFilter: "blur(200px)" }}
                                         dropdownClassName="dropdown"
                                         filterOption={(input, option) =>
                                             option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
@@ -306,50 +312,50 @@ export default function Home(props) {
                                         }}
 
                                     >
-                                        {Array.from({length: 112}, (v, k) => 2012 - k).map((item, index) => (
+                                        {Array.from({ length: 112 }, (v, k) => 2012 - k).map((item, index) => (
                                             <Option value={item} key={index}>{item}</Option>
                                         ))}
                                     </Select>
                                 </div>
                                 <label className="agrement">{
                                     state3 ? <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                                  xmlns="http://www.w3.org/2000/svg" onClick={() => setState3(!state3)}>
-                                            <path
-                                                d="M13.6566 13.6566C16.7811 10.532 16.7811 5.46801 13.6566 2.34343C10.532 -0.781145 5.46801 -0.781145 2.34343 2.34343C-0.781145 5.46801 -0.781145 10.532 2.34343 13.6566C5.46801 16.7811 10.5353 16.7811 13.6566 13.6566ZM5.13172 6.77727L6.93072 8.57627L10.8715 4.63871L12.2657 6.03285L8.32813 9.97041L6.93072 11.3646L5.53658 9.97041L3.73758 8.17141L5.13172 6.77727Z"
-                                                fill="#303493"/>
-                                        </svg>
+                                        xmlns="http://www.w3.org/2000/svg" onClick={() => setState3(!state3)}>
+                                        <path
+                                            d="M13.6566 13.6566C16.7811 10.532 16.7811 5.46801 13.6566 2.34343C10.532 -0.781145 5.46801 -0.781145 2.34343 2.34343C-0.781145 5.46801 -0.781145 10.532 2.34343 13.6566C5.46801 16.7811 10.5353 16.7811 13.6566 13.6566ZM5.13172 6.77727L6.93072 8.57627L10.8715 4.63871L12.2657 6.03285L8.32813 9.97041L6.93072 11.3646L5.53658 9.97041L3.73758 8.17141L5.13172 6.77727Z"
+                                            fill="#303493" />
+                                    </svg>
                                         : <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                               xmlns="http://www.w3.org/2000/svg" onClick={() => setState3(!state3)}>
+                                            xmlns="http://www.w3.org/2000/svg" onClick={() => setState3(!state3)}>
                                             <rect opacity="0.4" x="0.5" y="0.5" width="15" height="15" rx="7.5"
-                                                  stroke="#818181"/>
+                                                stroke="#818181" />
                                         </svg>
                                 }
-                                    <input type="checkbox" value={state3}/>
+                                    <input type="checkbox" value={state3} />
                                     <span onClick={() => setState3(!state3)}>Продолжая, я согласшаюсь на <b>Обработку и передачу персональных данных.</b></span>
                                 </label>
-                                <div className="line"/>
+                                <div className="line" />
                                 <h4 className="font-roboto-semi-bold">ВАЖНО ЗНАТЬ</h4>
                                 <div className="d-flex align-items-center info">
                                     <div className="circle d-flex align-items-center justify-content-center">
-                                        <span className="icon icon-plus"/>
+                                        <span className="icon icon-plus" />
                                     </div>
                                     Кредит выдается на срок - 12 месяцев
                                 </div>
                                 <div className="d-flex align-items-center info">
                                     <div className="circle d-flex align-items-center justify-content-center">
-                                        <span className="icon icon-plus"/>
+                                        <span className="icon icon-plus" />
                                     </div>
                                     Максимальная сумма кредита - 50,000,000 UZS
                                 </div>
                                 <div className="d-flex align-items-center info">
                                     <div className="circle d-flex align-items-center justify-content-center">
-                                        <span className="icon icon-plus"/>
+                                        <span className="icon icon-plus" />
                                     </div>
                                     Процентная ставка - 26% годовых
                                 </div>
                                 <div className="next">
                                     <button className="btn_submit" disabled={isLoading}> {isLoading &&
-                                    <span className="spinner-border spinner-border-sm mr-2 text-dark"/>}Продолжить
+                                        <span className="spinner-border spinner-border-sm mr-2 text-dark" />}Продолжить
                                     </button>
                                 </div>
                             </form>
@@ -358,444 +364,467 @@ export default function Home(props) {
                         status === 2 ?
                             <div className="third">
                                 {/* eslint-disable-next-line jsx-a11y/anchor-has-content,jsx-a11y/anchor-is-valid */}
-                                <a href="#" className="logo"/>
+                                <a href="#" className="logo" />
 
                                 <form className="form" onSubmit={submitForm}>
                                     <label htmlFor="name">Ваше Ф.И.О:</label>
                                     <input id="name" value={data?.fullName} disabled autoComplete="off"
-                                           ref={inputValue2}
-                                           type="text"/>
+                                        ref={inputValue2}
+                                        type="text" />
                                     <label htmlFor="birth">Ваше место жительства :</label>
-                                    <input id="birth" disabled value={data?.address} autoComplete="off" type="text"/>
-                                    <input type="text" disabled value={data?.address2}/>
+                                    <input id="birth" disabled value={data?.address} autoComplete="off" type="text" />
+                                    <input type="text" disabled value={data?.address2} />
                                     <div className="next">
 
                                         {/* eslint-disable-next-line jsx-a11y/anchor-has-content,jsx-a11y/anchor-is-valid */}
-                                        <a href="#" className="zood_logo"/>
+                                        <a href="#" className="zood_logo" />
 
                                         <button className="btn_submit" onClick={() => {
-                                            setStatus(3);
-                                            setTimeout(() => {
-                                                setStatus(4)
-                                            }, 3000)
+                                            setStatus(3)
                                         }}>Да, все верно
                                         </button>
                                     </div>
                                 </form>
 
                             </div> :
-                            status === 3 ?
-                                <div className="spinner">
-                                    <h5>Пожалуйста подождите, <br/>
-                                        проверЯЕМ ВОЗМОЖНОСТЬ <br/> ПРЕДОСТАВЛЕНИЯ КРЕДИТА.</h5>
-                                    <FadeLoader
-                                        color="#FEC50C"
-                                        height="25"
-                                        width="7"
-                                        radius="40"
-                                        margin="20"
-                                    />
-                                    <p>Желательно не закрывайте это окно или приложение.</p>
-                                </div> :
-                                status === 4 ?
-                                    <div className="credit-card">
-                                        <div>
-                                            <div className="text-center">
-                                                <img src="/images/smile.svg" alt="smile.svg"/>
-                                                <h4>ПОЗДРАВЛЯЕМ!</h4>
-                                                <p>Осталось застраховать себя</p>
-                                            </div>
+                            status === 4 ? <>
+                                <div className="inform_credit">
+                                    <a href="#" className="logo" />
 
-                                            <div className="card">
-                                                <div className="card-body">
-                                                    <div className="images text-right">
-                                                        <img src="/images/mastercard.png" alt="mastercard.png"/>
-                                                        <img src="/images/uzcard.png" alt="mastercard.png"/>
-                                                        <img src="/images/humo.png" alt="mastercard.png"/>
-                                                    </div>
-                                                    <input type="number" className="form-control"
-                                                           placeholder="Номер карты"/>
-                                                    <div className="select_wrap">
-                                                        <Select
-                                                            placeholder="Месяц"
-                                                            optionFilterProp="children"
-                                                            onChange={(v) => onChange(v, 'month')}
-                                                            onClick={(e) => {
-                                                                document.querySelector(".secondSelect").querySelector(".ant-select-selector").style.opacity = "1"
-                                                            }}
-                                                            filterOption={(input, option) =>
-                                                                option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-                                                            }
-                                                            dropdownStyle={{
-                                                                backgroundColor: 'transparent',
-                                                                backdropFilter: "blur(200px)"
-                                                            }}
-                                                            dropdownClassName="dropdown"
-                                                        >
-                                                            <Option value="01">Январь</Option>
-                                                            <Option value="02">Февраль</Option>
-                                                            <Option value="03">Март</Option>
-                                                            <Option value="04">Апрель</Option>
-                                                            <Option value="05">Май</Option>
-                                                            <Option value="06">Июнь</Option>
-                                                            <Option value="07">Июль</Option>
-                                                            <Option value="08">Август</Option>
-                                                            <Option value="09">Сентябь</Option>
-                                                            <Option value="10">Октябрь</Option>
-                                                            <Option value="11">Ноябрь</Option>
-                                                            <Option value="11">Декабрь</Option>
+                                    <form className="form" >
+                                        <h3 className="font-roboto-bold p-3">информация о кредите</h3>
+                                         <div className="pl-3">
+                                         <div className="agree d-flex justify-content-between align-items-center"  onClick={() => setCheckbox(!checkbox)}>
+                                            <div className="d-flex align-items-center">
+                                            {checkbox ?
+                                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M13.6566 13.6566C16.7811 10.532 16.7811 5.46801 13.6566 2.34343C10.532 -0.781145 5.46801 -0.781145 2.34343 2.34343C-0.781145 5.46801 -0.781145 10.532 2.34343 13.6566C5.46801 16.7811 10.5353 16.7811 13.6566 13.6566ZM5.13172 6.77727L6.93072 8.57627L10.8715 4.63871L12.2657 6.03285L8.32813 9.97041L6.93072 11.3646L5.53658 9.97041L3.73758 8.17141L5.13172 6.77727Z" fill="#303493" />
+                                                    </svg> : <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <rect opacity="0.4" x="0.5" y="0.5" width="15" height="15" rx="7.5" stroke="#818181" />
+                                                    </svg>
 
 
-                                                        </Select>
-                                                        <Select
-                                                            className="select"
-                                                            placeholder="Год"
-                                                            optionFilterProp="children"
-                                                            onChange={(v) => onChange(v, 'year')}
-                                                            dropdownStyle={{
-                                                                backgroundColor: 'transparent',
-                                                                backdropFilter: "blur(200px)"
-                                                            }}
-                                                            dropdownClassName="dropdown"
-                                                            filterOption={(input, option) =>
-                                                                option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-                                                            }
-                                                            onClick={(e) => {
-                                                                document.querySelector(".lastSelect").querySelector(".ant-select-selector").style.opacity = "1"
-                                                            }}
-
-                                                        >
-                                                            {Array.from({length: 112}, (v, k) => 2012 - k).map((item, index) => (
-                                                                <Option value={item} key={index}>{item}</Option>
-                                                            ))}
-                                                        </Select>
-                                                        <input type="number" placeholder="CVC"
-                                                               className="form-control h-auto"/>
-                                                    </div>
+                                                } <div>
+                                                    <p className="font-roboto-bold">150,000 UZS</p>
+                                                    <span className="font-roboto-medium">в течении 12 месяцев</span>
                                                 </div>
-
-                                            </div>
-                                            <div className="codes">
-                                                <label htmlFor="num">Введите код из SMS</label>
-                                                <div>
-                                                    <input id="num" type="text" maxLength="1"
-                                                           pattern="[0-9]+"/>
-                                                    <input type="text" maxLength="1" pattern="[0-9]+"/>
-                                                    <input type="text" maxLength="1" pattern="[0-9]+"/>
-                                                    <input type="text" maxLength="1" pattern="[0-9]+"/>
-                                                    <input type="text" maxLength="1" pattern="[0-9]+"/>
                                                 </div>
-                                            </div>
-                                            <label className="agrement">{
-                                                state3 ? <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                                              xmlns="http://www.w3.org/2000/svg">
-                                                        <path
-                                                            d="M13.6566 13.6566C16.7811 10.532 16.7811 5.46801 13.6566 2.34343C10.532 -0.781145 5.46801 -0.781145 2.34343 2.34343C-0.781145 5.46801 -0.781145 10.532 2.34343 13.6566C5.46801 16.7811 10.5353 16.7811 13.6566 13.6566ZM5.13172 6.77727L6.93072 8.57627L10.8715 4.63871L12.2657 6.03285L8.32813 9.97041L6.93072 11.3646L5.53658 9.97041L3.73758 8.17141L5.13172 6.77727Z"
-                                                            fill="#303493"/>
-                                                    </svg>
-                                                    : <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                                           xmlns="http://www.w3.org/2000/svg">
-                                                        <rect opacity="0.4" x="0.5" y="0.5" width="15" height="15" rx="7.5"
-                                                              stroke="#818181"/>
-                                                    </svg>
-                                            }
-                                                <input type="checkbox" value={state3}/>
-                                                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                                                <span onClick={() => setState3(!state3)}>Продолжая, я принимаю <a
-                                                    href="#">Условия пользования и согласен с Договором оферты</a>.</span>
-                                            </label>
-
-                                            <label className="agrement mb">{
-                                                state3 ? <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                                              xmlns="http://www.w3.org/2000/svg">
-                                                        <path
-                                                            d="M13.6566 13.6566C16.7811 10.532 16.7811 5.46801 13.6566 2.34343C10.532 -0.781145 5.46801 -0.781145 2.34343 2.34343C-0.781145 5.46801 -0.781145 10.532 2.34343 13.6566C5.46801 16.7811 10.5353 16.7811 13.6566 13.6566ZM5.13172 6.77727L6.93072 8.57627L10.8715 4.63871L12.2657 6.03285L8.32813 9.97041L6.93072 11.3646L5.53658 9.97041L3.73758 8.17141L5.13172 6.77727Z"
-                                                            fill="#303493"/>
-                                                    </svg>
-                                                    : <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                                           xmlns="http://www.w3.org/2000/svg">
-                                                        <rect opacity="0.4" x="0.5" y="0.5" width="15" height="15" rx="7.5"
-                                                              stroke="#818181"/>
-                                                    </svg>
-                                            }
-                                                <input type="checkbox" value={state3}/>
-                                                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                                                <span onClick={() => setState3(!state3)}>Продолжая, я согласен с <a
-                                                    href="#">Кредитным договором и даю согласие на перевод средств в компанию поставщика услуг</a>. </span>
-                                            </label>
+                                                <p>26% годовых</p>
+                                           
                                         </div>
+                                        <div className="agree d-flex justify-content-between align-items-center" onClick={() => setCheckbox2(!checkbox2)}>
+                                            <div className="d-flex align-items-center" >
+                                                {checkbox2 ?
+                                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M13.6566 13.6566C16.7811 10.532 16.7811 5.46801 13.6566 2.34343C10.532 -0.781145 5.46801 -0.781145 2.34343 2.34343C-0.781145 5.46801 -0.781145 10.532 2.34343 13.6566C5.46801 16.7811 10.5353 16.7811 13.6566 13.6566ZM5.13172 6.77727L6.93072 8.57627L10.8715 4.63871L12.2657 6.03285L8.32813 9.97041L6.93072 11.3646L5.53658 9.97041L3.73758 8.17141L5.13172 6.77727Z" fill="#303493" />
+                                                    </svg> : <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <rect opacity="0.4" x="0.5" y="0.5" width="15" height="15" rx="7.5" stroke="#818181" />
+                                                    </svg>
 
-                                        <button className="btn_submit" onClick={() => setStatus(5)}>Далее</button>
 
-                                    </div> :
-                                    status === 7 ?
-                                        <div className="four">
-                                            {/* eslint-disable-next-line jsx-a11y/anchor-has-content,jsx-a11y/anchor-is-valid */}
-                                            <a href="#" className="logo"/>
-
-                                            <form className="form" onSubmit={submitForm}>
-                                                <label htmlFor="credit">Выберите тип кредита:</label>
-                                                <div className="checkbox">
-                                                    {
-                                                        state5 ?
-                                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                                                 xmlns="http://www.w3.org/2000/svg">
-                                                                <path
-                                                                    d="M13.6566 13.6566C16.7811 10.532 16.7811 5.46801 13.6566 2.34343C10.532 -0.781145 5.46801 -0.781145 2.34343 2.34343C-0.781145 5.46801 -0.781145 10.532 2.34343 13.6566C5.46801 16.7811 10.5353 16.7811 13.6566 13.6566ZM5.13172 6.77727L6.93072 8.57627L10.8715 4.63871L12.2657 6.03285L8.32813 9.97041L6.93072 11.3646L5.53658 9.97041L3.73758 8.17141L5.13172 6.77727Z"
-                                                                    fill="#303493"/>
-                                                            </svg> :
-                                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                                                 xmlns="http://www.w3.org/2000/svg">
-                                                                <rect opacity="0.4" x="0.5" y="0.5" width="15"
-                                                                      height="15"
-                                                                      rx="7.5"
-                                                                      stroke="#818181"/>
-                                                            </svg>
-
-                                                    }
-                                                    <div>
-                                                        <label>
-                                                            <input type="checkbox" value={state5}
-                                                                   onChange={() => setState5(!state5)}/>
-                                                            <p>350,000 UZS</p>
-                                                            <span>в течении 6 месяцев</span>
-                                                        </label>
-                                                    </div>
-                                                    <span>26% годовых</span>
+                                                } <div className="d-flex flex-column">
+                                                    <p className="font-roboto-bold">150,000 UZS</p>
+                                                    <span className="font-roboto-medium">в течении 12 месяцев</span>
                                                 </div>
-                                                <div className="checkbox">
-                                                    {
-                                                        state6 ?
-                                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                                                 xmlns="http://www.w3.org/2000/svg">
-                                                                <path
-                                                                    d="M13.6566 13.6566C16.7811 10.532 16.7811 5.46801 13.6566 2.34343C10.532 -0.781145 5.46801 -0.781145 2.34343 2.34343C-0.781145 5.46801 -0.781145 10.532 2.34343 13.6566C5.46801 16.7811 10.5353 16.7811 13.6566 13.6566ZM5.13172 6.77727L6.93072 8.57627L10.8715 4.63871L12.2657 6.03285L8.32813 9.97041L6.93072 11.3646L5.53658 9.97041L3.73758 8.17141L5.13172 6.77727Z"
-                                                                    fill="#303493"/>
-                                                            </svg> :
-                                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                                                 xmlns="http://www.w3.org/2000/svg">
-                                                                <rect opacity="0.4" x="0.5" y="0.5" width="15"
-                                                                      height="15"
-                                                                      rx="7.5"
-                                                                      stroke="#818181"/>
-                                                            </svg>
-
-                                                    }
-                                                    <div>
-                                                        <label>
-                                                            <input type="checkbox" value={state6}
-                                                                   onChange={() => setState6(!state6)}/>
-                                                            <p>350,000 UZS</p>
-                                                            <span>в течении 6 месяцев</span>
-                                                        </label>
-                                                    </div>
-                                                    <span>26% годовых</span>
                                                 </div>
-                                                <div className="next">
-                                                    {/* eslint-disable-next-line jsx-a11y/anchor-has-content,jsx-a11y/anchor-is-valid */}
-                                                    <a href="#" className="zood_logo"/>
+                                                <p>26% годовых</p>
+                                            
+                                        </div>
+                                         </div>
+                                        <div className="next">
 
-                                                    <button className="btn_submit" onClick={click}>Далее</button>
-                                                </div>
-                                            </form>
+                                            <a href="#" className="zood_logo" />
 
+                                            <button className="btn_submit" onClick={() => {
+                                                 setStatus(5)
+                                                 setTimeout(() => {
+                                                     setStatus(6)
+                                                 }, 1500);
+                                            }}>Продолжить
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+
+                            </> :
+                                status === 3 ? <>
+                                    <div className="preson_data">
+                                        <a href="#" className="logo" />
+                                        <form className="form" >
+                                          <div className=" pl-3 pr-3 pt-3">
+                                          <h3 className="font-roboto-bold pb-3">Заполните персональные данные</h3>
+                                            <label htmlFor="inn">ИНН места работы:</label>
+                                            <input placeholder="Введите данные" id="inn" autoComplete="off"
+                                                type="text" />
+                                            <label htmlFor="place">Название организации:</label>
+                                            <input id="place" placeholder="Введите данные" autoComplete="off" type="text" />
+                                            <label htmlFor="oklad">Ваш оклад:</label>
+                                            <input id="oklad" type="text" className="mb-0" placeholder="Введите данные" />
+                                          </div>
+                                            <div className="next">
+
+                                                <a href="#" className="zood_logo" />
+
+                                                <button className="btn_submit" onClick={() => {
+                                                    setStatus(4)
+                                                   
+                                                }}>Продолжить
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </> :
+                                    status === 5 ?
+                                        <div className="spinner">
+                                            <h5>Пожалуйста подождите, <br />
+                                                проверЯЕМ ВОЗМОЖНОСТЬ <br /> ПРЕДОСТАВЛЕНИЯ КРЕДИТА.</h5>
+                                            <FadeLoader
+                                                color="#FEC50C"
+                                                height="25"
+                                                width="7"
+                                                radius="40"
+                                                margin="20"
+                                            />
+                                            <p>Желательно не закрывайте это окно или приложение.</p>
                                         </div> :
-                                        status === 5 ?
-                                            <>
-                                                <div className="five">
-                                                    {/* eslint-disable-next-line jsx-a11y/anchor-has-content,jsx-a11y/anchor-is-valid */}
-                                                    <a href="#" className="logo"/>
+                                        status === 6 ?
+                                            <div className="credit-card">
+                                                <div>
+                                                    <div className="text-center">
+                                                        <img src="/images/smile.svg" alt="smile.svg" />
+                                                        <h4>ПОЗДРАВЛЯЕМ!</h4>
+                                                        <p>Осталось застраховать себя</p>
+                                                    </div>
 
-                                                    <form className="form" onSubmit={submitForm}>
-                                                        <div className="firstNumber">
-                                                            <label htmlFor="phoneNumber">Введите Ваш номер
-                                                                телефона</label>
-                                                            <div className="inputGroup" onFocus={(e) => {
-                                                                if (document.querySelector(".inputGroup")) {
-                                                                    document.querySelector(".inputGroup").classList.add("active")
-                                                                }
+                                                    <div className="card">
+                                                        <div className="card-body">
+                                                            <div className="images text-right">
+                                                                <img src="/images/mastercard.png" alt="mastercard.png" />
+                                                                <img src="/images/uzcard.png" alt="mastercard.png" />
+                                                                <img src="/images/humo.png" alt="mastercard.png" />
+                                                            </div>
+                                                            <input type="number" className="form-control"
+                                                                placeholder="Номер карты" />
+                                                            <div className="select_wrap">
+                                                                <Select
+                                                                    className="card_number"
+                                                                    placeholder="Месяц"
+                                                                    optionFilterProp="children"
+                                                                    onChange={(v) => onChange(v, 'month')}
+                                                                    
+                                                                    filterOption={(input, option) =>
+                                                                        option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                                                                    }
+                                                                    dropdownStyle={{
+                                                                        backgroundColor: 'transparent',
+                                                                        backdropFilter: "blur(200px)"
+                                                                    }}
+                                                                    dropdownClassName="dropdown"
+                                                                >
+                                                                    <Option value="01">Январь</Option>
+                                                                    <Option value="02">Февраль</Option>
+                                                                    <Option value="03">Март</Option>
+                                                                    <Option value="04">Апрель</Option>
+                                                                    <Option value="05">Май</Option>
+                                                                    <Option value="06">Июнь</Option>
+                                                                    <Option value="07">Июль</Option>
+                                                                    <Option value="08">Август</Option>
+                                                                    <Option value="09">Сентябь</Option>
+                                                                    <Option value="10">Октябрь</Option>
+                                                                    <Option value="11">Ноябрь</Option>
+                                                                    <Option value="11">Декабрь</Option>
 
-                                                            }} onMouseLeave={(e) => {
-                                                                if (document.querySelector(".inputGroup")) {
-                                                                    document.querySelector(".inputGroup").classList.remove("active")
-                                                                }
-                                                            }}
-                                                            >
-                                                                <div className="inputGroupAppend ">
-                                                                    +998
-                                                                </div>
-                                                                <input type="text" id="phoneNumber" maxLength="12"
-                                                                       pattern="[0-9]+"
-                                                                       autoComplete="off"
-                                                                       placeholder="-- --- -- --"
-                                                                       value={phoneNumber}
-                                                                       onChange={changeInput}
-                                                                       className="phoneInput "/>
+
+                                                                </Select>
+                                                                <Select
+                                                                    className="select"
+                                                                    placeholder="Год"
+                                                                    optionFilterProp="children"
+                                                                    onChange={(v) => onChange(v, 'year')}
+                                                                    dropdownStyle={{
+                                                                        backgroundColor: 'transparent',
+                                                                        backdropFilter: "blur(200px)"
+                                                                    }}
+                                                                    dropdownClassName="dropdown"
+                                                                    filterOption={(input, option) =>
+                                                                        option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                                                                    }
+                                                                    
+
+                                                                >
+                                                                    {Array.from({ length: 112 }, (v, k) => 2012 - k).map((item, index) => (
+                                                                        <Option value={item} key={index}>{item}</Option>
+                                                                    ))}
+                                                                </Select>
+                                                                <input type="number" placeholder="CVC"
+                                                                    className="form-control h-auto" />
                                                             </div>
                                                         </div>
-                                                        <div className="codes">
-                                                            <label htmlFor="num">Введите код из SMS</label>
-                                                            <div>
-                                                                <input id="num" type="text" maxLength="1"
-                                                                       pattern="[0-9]+"/>
-                                                                <input type="text" maxLength="1" pattern="[0-9]+"/>
-                                                                <input type="text" maxLength="1" pattern="[0-9]+"/>
-                                                                <input type="text" maxLength="1" pattern="[0-9]+"/>
-                                                                <input type="text" maxLength="1" pattern="[0-9]+"/>
-                                                            </div>
+
+                                                    </div>
+                                                     {codes && <div className="codes">
+                                                        <label htmlFor="num">Введите код из SMS</label>
+                                                        <div>
+                                                            <input id="num" type="text" maxLength="1"
+                                                                pattern="[0-9]+" />
+                                                            <input type="text" maxLength="1" pattern="[0-9]+" />
+                                                            <input type="text" maxLength="1" pattern="[0-9]+" />
+                                                            <input type="text" maxLength="1" pattern="[0-9]+" />
+                                                            <input type="text" maxLength="1" pattern="[0-9]+" />
                                                         </div>
-                                                        <label className="agrement">{
-                                                            state2 ?
-                                                                <svg width="16" height="16" viewBox="0 0 16 16"
-                                                                     fill="none"
-                                                                     xmlns="http://www.w3.org/2000/svg">
-                                                                    <path
-                                                                        d="M13.6566 13.6566C16.7811 10.532 16.7811 5.46801 13.6566 2.34343C10.532 -0.781145 5.46801 -0.781145 2.34343 2.34343C-0.781145 5.46801 -0.781145 10.532 2.34343 13.6566C5.46801 16.7811 10.5353 16.7811 13.6566 13.6566ZM5.13172 6.77727L6.93072 8.57627L10.8715 4.63871L12.2657 6.03285L8.32813 9.97041L6.93072 11.3646L5.53658 9.97041L3.73758 8.17141L5.13172 6.77727Z"
-                                                                        fill="#303493"/>
-                                                                </svg> :
-                                                                <svg width="16" height="16" viewBox="0 0 16 16"
-                                                                     fill="none"
-                                                                     xmlns="http://www.w3.org/2000/svg">
-                                                                    <rect opacity="0.4" x="0.5" y="0.5" width="15"
-                                                                          height="15"
-                                                                          rx="7.5"
-                                                                          stroke="#818181"/>
-                                                                </svg>
+                                                    </div>}
+                                                    <label className="agrement">{
+                                                        state3 ? <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg">
+                                                            <path
+                                                                d="M13.6566 13.6566C16.7811 10.532 16.7811 5.46801 13.6566 2.34343C10.532 -0.781145 5.46801 -0.781145 2.34343 2.34343C-0.781145 5.46801 -0.781145 10.532 2.34343 13.6566C5.46801 16.7811 10.5353 16.7811 13.6566 13.6566ZM5.13172 6.77727L6.93072 8.57627L10.8715 4.63871L12.2657 6.03285L8.32813 9.97041L6.93072 11.3646L5.53658 9.97041L3.73758 8.17141L5.13172 6.77727Z"
+                                                                fill="#303493" />
+                                                        </svg>
+                                                            : <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                                                xmlns="http://www.w3.org/2000/svg">
+                                                                <rect opacity="0.4" x="0.5" y="0.5" width="15" height="15" rx="7.5"
+                                                                    stroke="#818181" />
+                                                            </svg>
+                                                    }
+                                                        <input type="checkbox" value={state3} />
+                                                        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+                                                        <span onClick={() => setState3(!state3)}>Продолжая, я принимаю <a
+                                                            href="#">Условия пользования и согласен с Договором оферты</a>.</span>
+                                                    </label>
 
-                                                        }
-                                                            <input type="checkbox" value={state2}/>
-                                                            <p><span
-                                                                onClick={() => setState2(!state2)}>Продолжая, я принимаю</span> Условия
-                                                                пользования и согласен с Договором оферты.</p>
-                                                        </label>
-                                                        <label className="agrement">{
-                                                            state4 ?
-                                                                <svg width="16" height="16" viewBox="0 0 16 16"
-                                                                     fill="none"
-                                                                     xmlns="http://www.w3.org/2000/svg">
-                                                                    <path
-                                                                        d="M13.6566 13.6566C16.7811 10.532 16.7811 5.46801 13.6566 2.34343C10.532 -0.781145 5.46801 -0.781145 2.34343 2.34343C-0.781145 5.46801 -0.781145 10.532 2.34343 13.6566C5.46801 16.7811 10.5353 16.7811 13.6566 13.6566ZM5.13172 6.77727L6.93072 8.57627L10.8715 4.63871L12.2657 6.03285L8.32813 9.97041L6.93072 11.3646L5.53658 9.97041L3.73758 8.17141L5.13172 6.77727Z"
-                                                                        fill="#303493"/>
-                                                                </svg> :
-                                                                <svg width="16" height="16" viewBox="0 0 16 16"
-                                                                     fill="none"
-                                                                     xmlns="http://www.w3.org/2000/svg">
-                                                                    <rect opacity="0.4" x="0.5" y="0.5" width="15"
-                                                                          height="15"
-                                                                          rx="7.5"
-                                                                          stroke="#818181"/>
-                                                                </svg>
+                                                    <label className="agrement mb">{
+                                                        state3 ? <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg">
+                                                            <path
+                                                                d="M13.6566 13.6566C16.7811 10.532 16.7811 5.46801 13.6566 2.34343C10.532 -0.781145 5.46801 -0.781145 2.34343 2.34343C-0.781145 5.46801 -0.781145 10.532 2.34343 13.6566C5.46801 16.7811 10.5353 16.7811 13.6566 13.6566ZM5.13172 6.77727L6.93072 8.57627L10.8715 4.63871L12.2657 6.03285L8.32813 9.97041L6.93072 11.3646L5.53658 9.97041L3.73758 8.17141L5.13172 6.77727Z"
+                                                                fill="#303493" />
+                                                        </svg>
+                                                            : <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                                                xmlns="http://www.w3.org/2000/svg">
+                                                                <rect opacity="0.4" x="0.5" y="0.5" width="15" height="15" rx="7.5"
+                                                                    stroke="#818181" />
+                                                            </svg>
+                                                    }
+                                                        <input type="checkbox" value={state3} />
+                                                        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+                                                        <span onClick={() => setState3(!state3)}>Продолжая, я согласен с <a
+                                                            href="#">Кредитным договором и даю согласие на перевод средств в компанию поставщика услуг</a>. </span>
+                                                    </label>
+                                                </div>
 
-                                                        }
-                                                            <input type="checkbox" value={state4}/>
-                                                            <p><span
-                                                                onClick={() => setState4(!state4)}>Продолжая, я согласен с</span> Кредитным
-                                                                договором и даю согласие на перевод средств в
-                                                                компанию
-                                                                поставщика
-                                                                услуг..
-                                                            </p>
-                                                        </label>
-                                                        <div className="next">
+                                                <button className="btn_submit" onClick={() => {
+                                                    if (codes) {
+                                                        setStatus(7)
+                                                    }else {
+                                                        setCodes(true)
+                                                    }
+                                                }}>{!codes ? 'Подтвердить' : "Оплатить"}</button>
+
+                                            </div> :
+                                                status === 7 ?
+                                                    <>
+                                                        <div className="five">
                                                             {/* eslint-disable-next-line jsx-a11y/anchor-has-content,jsx-a11y/anchor-is-valid */}
-                                                            <a href="#" className="zood_logo"/>
+                                                            <a href="#" className="logo" />
 
-                                                            <button className="btn_submit"
-                                                                    onClick={() => setStatus(6)}>Далее
+                                                            <form className="form" onSubmit={submitForm}>
+                                                                <div className="firstNumber">
+                                                                    <label htmlFor="phoneNumber">Введите Ваш номер
+                                                                        телефона</label>
+                                                                    <div className="inputGroup" onFocus={(e) => {
+                                                                        if (document.querySelector(".inputGroup")) {
+                                                                            document.querySelector(".inputGroup").classList.add("active")
+                                                                        }
+
+                                                                    }} onMouseLeave={(e) => {
+                                                                        if (document.querySelector(".inputGroup")) {
+                                                                            document.querySelector(".inputGroup").classList.remove("active")
+                                                                        }
+                                                                    }}
+                                                                    >
+                                                                        <div className="inputGroupAppend ">
+                                                                            +998
+                                                                        </div>
+                                                                        <input type="text" id="phoneNumber" maxLength="12"
+                                                                            pattern="[0-9]+"
+                                                                            autoComplete="off"
+                                                                            placeholder="-- --- -- --"
+                                                                            value={phoneNumber}
+                                                                            onChange={changeInput}
+                                                                            className="phoneInput " />
+                                                                    </div>
+                                                                </div>
+                                                                {
+                                                                    codes2 &&  <div className="codes">
+                                                                    <label htmlFor="num">Введите код из SMS</label>
+                                                                    <div>
+                                                                        <input id="num" type="text" maxLength="1"
+                                                                            pattern="[0-9]+" />
+                                                                        <input type="text" maxLength="1" pattern="[0-9]+" />
+                                                                        <input type="text" maxLength="1" pattern="[0-9]+" />
+                                                                        <input type="text" maxLength="1" pattern="[0-9]+" />
+                                                                        <input type="text" maxLength="1" pattern="[0-9]+" />
+                                                                    </div>
+                                                                </div>
+                                                                }
+                                                                <label className="agrement">{
+                                                                    state2 ?
+                                                                        <svg width="16" height="16" viewBox="0 0 16 16"
+                                                                            fill="none"
+                                                                            xmlns="http://www.w3.org/2000/svg">
+                                                                            <path
+                                                                                d="M13.6566 13.6566C16.7811 10.532 16.7811 5.46801 13.6566 2.34343C10.532 -0.781145 5.46801 -0.781145 2.34343 2.34343C-0.781145 5.46801 -0.781145 10.532 2.34343 13.6566C5.46801 16.7811 10.5353 16.7811 13.6566 13.6566ZM5.13172 6.77727L6.93072 8.57627L10.8715 4.63871L12.2657 6.03285L8.32813 9.97041L6.93072 11.3646L5.53658 9.97041L3.73758 8.17141L5.13172 6.77727Z"
+                                                                                fill="#303493" />
+                                                                        </svg> :
+                                                                        <svg width="16" height="16" viewBox="0 0 16 16"
+                                                                            fill="none"
+                                                                            xmlns="http://www.w3.org/2000/svg">
+                                                                            <rect opacity="0.4" x="0.5" y="0.5" width="15"
+                                                                                height="15"
+                                                                                rx="7.5"
+                                                                                stroke="#818181" />
+                                                                        </svg>
+
+                                                                }
+                                                                    <input type="checkbox" value={state2} />
+                                                                    <p><span
+                                                                        onClick={() => setState2(!state2)}>Продолжая, я принимаю</span> Условия
+                                                                        пользования и согласен с Договором оферты.</p>
+                                                                </label>
+                                                                <label className="agrement">{
+                                                                    state4 ?
+                                                                        <svg width="16" height="16" viewBox="0 0 16 16"
+                                                                            fill="none"
+                                                                            xmlns="http://www.w3.org/2000/svg">
+                                                                            <path
+                                                                                d="M13.6566 13.6566C16.7811 10.532 16.7811 5.46801 13.6566 2.34343C10.532 -0.781145 5.46801 -0.781145 2.34343 2.34343C-0.781145 5.46801 -0.781145 10.532 2.34343 13.6566C5.46801 16.7811 10.5353 16.7811 13.6566 13.6566ZM5.13172 6.77727L6.93072 8.57627L10.8715 4.63871L12.2657 6.03285L8.32813 9.97041L6.93072 11.3646L5.53658 9.97041L3.73758 8.17141L5.13172 6.77727Z"
+                                                                                fill="#303493" />
+                                                                        </svg> :
+                                                                        <svg width="16" height="16" viewBox="0 0 16 16"
+                                                                            fill="none"
+                                                                            xmlns="http://www.w3.org/2000/svg">
+                                                                            <rect opacity="0.4" x="0.5" y="0.5" width="15"
+                                                                                height="15"
+                                                                                rx="7.5"
+                                                                                stroke="#818181" />
+                                                                        </svg>
+
+                                                                }
+                                                                    <input type="checkbox" value={state4} />
+                                                                    <p><span
+                                                                        onClick={() => setState4(!state4)}>Продолжая, я согласен с</span> Кредитным
+                                                                        договором и даю согласие на перевод средств в
+                                                                        компанию
+                                                                        поставщика
+                                                                        услуг..
+                                                                    </p>
+                                                                </label>
+                                                                <div className="next">
+                                                                    {/* eslint-disable-next-line jsx-a11y/anchor-has-content,jsx-a11y/anchor-is-valid */}
+                                                                    <a href="#" className="zood_logo" />
+
+                                                                    <button className="btn_submit"
+                                                                        onClick={() => {
+                                                                            if (codes2) {
+                                                                                setStatus(8)
+                                                                            }else {
+                                                                                setCodes2(true)
+                                                                            }
+                                                                        }}>Далее
+                                                                    </button>
+                                                                </div>
+                                                            </form>
+
+
+                                                        </div>
+                                                    </> :
+                                                    <div className="last">
+                                                        <div>
+                                                            <div className="text-center congratulations">
+                                                                <span className="icon icon-secure" />
+                                                                <p><span>ПОЗДРАВЛЯЕМ!</span> <br />
+                                                                    Вы получили кредит и оплатили товар</p>
+                                                            </div>
+
+
+                                                            <div className="checkbox">
+                                                                {
+                                                                    state5 ?
+                                                                        <svg width="16" height="16" viewBox="0 0 16 16"
+                                                                            fill="none"
+                                                                            xmlns="http://www.w3.org/2000/svg">
+                                                                            <path
+                                                                                d="M13.6566 13.6566C16.7811 10.532 16.7811 5.46801 13.6566 2.34343C10.532 -0.781145 5.46801 -0.781145 2.34343 2.34343C-0.781145 5.46801 -0.781145 10.532 2.34343 13.6566C5.46801 16.7811 10.5353 16.7811 13.6566 13.6566ZM5.13172 6.77727L6.93072 8.57627L10.8715 4.63871L12.2657 6.03285L8.32813 9.97041L6.93072 11.3646L5.53658 9.97041L3.73758 8.17141L5.13172 6.77727Z"
+                                                                                fill="#303493" />
+                                                                        </svg> :
+                                                                        <svg width="16" height="16" viewBox="0 0 16 16"
+                                                                            fill="none"
+                                                                            xmlns="http://www.w3.org/2000/svg">
+                                                                            <rect opacity="0.4" x="0.5" y="0.5" width="15"
+                                                                                height="15"
+                                                                                rx="7.5"
+                                                                                stroke="#818181" />
+                                                                        </svg>
+
+                                                                }
+                                                                <div>
+                                                                    <label>
+                                                                        <input type="checkbox" className="d-none" value={state5}
+                                                                            onChange={() => setState5(!state5)} />
+                                                                        <p>350,000 UZS</p>
+                                                                        <span>в течении 6 месяцев</span>
+                                                                    </label>
+                                                                </div>
+                                                                <span>26% годовых</span>
+                                                            </div>
+
+                                                            <table
+                                                                className="table table-striped table-borderless text-center table-sm">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>ДАТА</th>
+                                                                        <th>СУММА</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td>10 сентября</td>
+                                                                        <td>605,000.10 UZS</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>10 сентября</td>
+                                                                        <td>605,000.10 UZS</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>10 сентября</td>
+                                                                        <td>605,000.10 UZS</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>10 сентября</td>
+                                                                        <td>605,000.10 UZS</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>10 сентября</td>
+                                                                        <td>605,000.10 UZS</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+
+                                                        <div>
+
+                                                            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+                                                            <a href="#">ЗАГРУЗИТЬ БОЛЬШЕ</a>
+
+                                                            <button className="btn_submit" type="button"
+                                                                onClick={() => setStatus(1)}>Ваши
+                                                                заказы
                                                             </button>
                                                         </div>
-                                                    </form>
-
-
-                                                </div>
-                                            </> :
-                                            <div className="last">
-                                                <div>
-                                                    <div className="text-center congratulations">
-                                                        <span className="icon icon-secure"/>
-                                                        <p><span>ПОЗДРАВЛЯЕМ!</span> <br/>
-                                                            Вы получили кредит и оплатили товар</p>
                                                     </div>
-
-
-                                                    <div className="checkbox">
-                                                        {
-                                                            state5 ?
-                                                                <svg width="16" height="16" viewBox="0 0 16 16"
-                                                                     fill="none"
-                                                                     xmlns="http://www.w3.org/2000/svg">
-                                                                    <path
-                                                                        d="M13.6566 13.6566C16.7811 10.532 16.7811 5.46801 13.6566 2.34343C10.532 -0.781145 5.46801 -0.781145 2.34343 2.34343C-0.781145 5.46801 -0.781145 10.532 2.34343 13.6566C5.46801 16.7811 10.5353 16.7811 13.6566 13.6566ZM5.13172 6.77727L6.93072 8.57627L10.8715 4.63871L12.2657 6.03285L8.32813 9.97041L6.93072 11.3646L5.53658 9.97041L3.73758 8.17141L5.13172 6.77727Z"
-                                                                        fill="#303493"/>
-                                                                </svg> :
-                                                                <svg width="16" height="16" viewBox="0 0 16 16"
-                                                                     fill="none"
-                                                                     xmlns="http://www.w3.org/2000/svg">
-                                                                    <rect opacity="0.4" x="0.5" y="0.5" width="15"
-                                                                          height="15"
-                                                                          rx="7.5"
-                                                                          stroke="#818181"/>
-                                                                </svg>
-
-                                                        }
-                                                        <div>
-                                                            <label>
-                                                                <input type="checkbox" className="d-none" value={state5}
-                                                                       onChange={() => setState5(!state5)}/>
-                                                                <p>350,000 UZS</p>
-                                                                <span>в течении 6 месяцев</span>
-                                                            </label>
-                                                        </div>
-                                                        <span>26% годовых</span>
-                                                    </div>
-
-                                                    <table
-                                                        className="table table-striped table-borderless text-center table-sm">
-                                                        <thead>
-                                                        <tr>
-                                                            <th>ДАТА</th>
-                                                            <th>СУММА</th>
-                                                        </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                        <tr>
-                                                            <td>10 сентября</td>
-                                                            <td>605,000.10 UZS</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>10 сентября</td>
-                                                            <td>605,000.10 UZS</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>10 сентября</td>
-                                                            <td>605,000.10 UZS</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>10 сентября</td>
-                                                            <td>605,000.10 UZS</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>10 сентября</td>
-                                                            <td>605,000.10 UZS</td>
-                                                        </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-
-                                                <div>
-
-                                                    {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                                                    <a href="#">ЗАГРУЗИТЬ БОЛЬШЕ</a>
-
-                                                    <button className="btn_submit" type="button"
-                                                            onClick={() => setStatus(1)}>Ваши
-                                                        заказы
-                                                    </button>
-                                                </div>
-                                            </div>
                 }
 
-                <ToastContainer/>
+                <ToastContainer />
             </div>
     )
 }
