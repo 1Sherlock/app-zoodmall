@@ -41,12 +41,12 @@ export default function Home(props) {
 
     const { Option } = Select;
 
-    function click() {
-        setStatus(5)
-        setTimeout(() => {
-            setLoading(!loading)
-        }, 5000)
-    }
+    // function click() {
+    //     setStatus(5)
+    //     setTimeout(() => {
+    //         setLoading(!loading)
+    //     }, 50000000)
+    // }
 
     const changeInput = (e) => {
 
@@ -208,7 +208,8 @@ export default function Home(props) {
                             <a href="#" className="logo" />
 
                             <form className="form" onSubmit={sendFirst}>
-                                <label htmlFor="data">Введите серийный номер паспорта или ПИНФЛ:</label>
+                                <h2 className="font-roboto-semi-bold title">Заполните персональные данные</h2>
+                                <label htmlFor="data" className="">Введите серийный номер паспорта или ПИНФЛ:</label>
                                 <input autoComplete="off" type="text" id="data" value={number}
                                     onChange={changeNumber} name="pinfl" placeholder="Введите данные" />
 
@@ -333,23 +334,22 @@ export default function Home(props) {
                                     <input type="checkbox" value={state3} />
                                     <span onClick={() => setState3(!state3)}>Продолжая, я согласшаюсь на <b>Обработку и передачу персональных данных.</b></span>
                                 </label>
-                                <div className="line" />
-                                <h4 className="font-roboto-semi-bold">ВАЖНО ЗНАТЬ</h4>
+                                <h2 className="font-roboto-semi-bold title">ВАЖНО ЗНАТЬ</h2>
                                 <div className="d-flex align-items-center info">
                                     <div className="circle d-flex align-items-center justify-content-center">
-                                        <span className="icon icon-plus" />
+                                        {/*<span className="icon icon-plus" />*/}
                                     </div>
                                     Кредит выдается на срок - 12 месяцев
                                 </div>
                                 <div className="d-flex align-items-center info">
                                     <div className="circle d-flex align-items-center justify-content-center">
-                                        <span className="icon icon-plus" />
+                                        {/*<span className="icon icon-plus" />*/}
                                     </div>
                                     Максимальная сумма кредита - 50,000,000 UZS
                                 </div>
                                 <div className="d-flex align-items-center info">
                                     <div className="circle d-flex align-items-center justify-content-center">
-                                        <span className="icon icon-plus" />
+                                        {/*<span className="icon icon-plus" />*/}
                                     </div>
                                     Процентная ставка - 26% годовых
                                 </div>
@@ -367,6 +367,8 @@ export default function Home(props) {
                                 <a href="#" className="logo" />
 
                                 <form className="form" onSubmit={submitForm}>
+                                    <h2 className="font-roboto-semi-bold title">Приветствуем, {data?.fullName}</h2>
+
                                     <label htmlFor="name">Ваше Ф.И.О:</label>
                                     <input id="name" value={data?.fullName} disabled autoComplete="off"
                                         ref={inputValue2}
@@ -392,8 +394,7 @@ export default function Home(props) {
                                     <a href="#" className="logo" />
 
                                     <form className="form" >
-                                        <h3 className="font-roboto-bold p-3">информация о кредите</h3>
-                                         <div className="pl-3">
+                                        <h2 className="title">информация о кредите</h2>
                                          <div className="agree d-flex justify-content-between align-items-center"  onClick={() => setCheckbox(!checkbox)}>
                                             <div className="d-flex align-items-center">
                                             {checkbox ?
@@ -410,7 +411,7 @@ export default function Home(props) {
                                                 </div>
                                                 </div>
                                                 <p>26% годовых</p>
-                                           
+
                                         </div>
                                         <div className="agree d-flex justify-content-between align-items-center" onClick={() => setCheckbox2(!checkbox2)}>
                                             <div className="d-flex align-items-center" >
@@ -428,9 +429,54 @@ export default function Home(props) {
                                                 </div>
                                                 </div>
                                                 <p>26% годовых</p>
-                                            
+
                                         </div>
-                                         </div>
+                                        <h2 className="title">Дата оплаты кредита</h2>
+                                        <label htmlFor="day">Введите, дату рождения:</label>
+                                        <Select
+                                            id="day"
+                                            className={"firstSelect"}
+                                            style={{ width: 200 }}
+                                            placeholder="25 число каждого месяца"
+                                            optionFilterProp="children"
+                                            dropdownStyle={{ backgroundColor: 'transparent', backdropFilter: "blur(200px)" }}
+                                            dropdownClassName="dropdown"
+                                            name="nizom"
+                                            onClick={(e) => {
+                                                document.querySelector(".firstSelect").querySelector(".ant-select-selector").style.opacity = "1"
+                                            }}
+                                            filterOption={(input, option) =>
+                                                option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                                            }
+                                            onChange={(v) => onChange(v, 'day')}
+                                        >
+                                            <Option value="1">1 число каждого месяца</Option>
+                                            <Option value="2">2 число каждого месяца</Option>
+                                            <Option value="3">3 число каждого месяца</Option>
+                                            <Option value="4">4 число каждого месяца</Option>
+                                            <Option value="5">5 число каждого месяца</Option>
+                                            <Option value="6">6 число каждого месяца</Option>
+                                            <Option value="7">7 число каждого месяца</Option>
+                                            <Option value="8">8 число каждого месяца</Option>
+                                            <Option value="9">9 число каждого месяца</Option>
+                                            <Option value="10">10 число каждого месяца</Option>
+                                            <Option value="11">11 число каждого месяца</Option>
+                                            <Option value="12">12 число каждого месяца</Option>
+                                            <Option value="13">13 число каждого месяца</Option>
+                                            <Option value="14">14 число каждого месяца</Option>
+                                            <Option value="15">15 число каждого месяца</Option>
+                                            <Option value="16">16 число каждого месяца</Option>
+                                            <Option value="17">17 число каждого месяца</Option>
+                                            <Option value="18">18 число каждого месяца</Option>
+                                            <Option value="19">19 число каждого месяца</Option>
+                                            <Option value="20">20 число каждого месяца</Option>
+                                            <Option value="21">21 число каждого месяца</Option>
+                                            <Option value="22">22 число каждого месяца</Option>
+                                            <Option value="23">23 число каждого месяца</Option>
+                                            <Option value="24">24 число каждого месяца</Option>
+                                            <Option value="25">25 число каждого месяца</Option>
+                                        </Select>
+
                                         <div className="next">
 
                                             <a href="#" className="zood_logo" />
@@ -439,7 +485,7 @@ export default function Home(props) {
                                                  setStatus(5)
                                                  setTimeout(() => {
                                                      setStatus(6)
-                                                 }, 1500);
+                                                 }, 5000);
                                             }}>Продолжить
                                             </button>
                                         </div>
@@ -451,23 +497,22 @@ export default function Home(props) {
                                     <div className="preson_data">
                                         <a href="#" className="logo" />
                                         <form className="form" >
-                                          <div className=" pl-3 pr-3 pt-3">
-                                          <h3 className="font-roboto-bold pb-3">Заполните персональные данные</h3>
-                                            <label htmlFor="inn">ИНН места работы:</label>
-                                            <input placeholder="Введите данные" id="inn" autoComplete="off"
-                                                type="text" />
+                                              <h2 className="font-roboto-semi-bold title">Приветствуем, {data?.fullName}</h2>
+
+                                              <label htmlFor="inn">ИНН места работы:</label>
+                                            <input placeholder="Введите данные"  id="inn" autoComplete="off"
+                                                type="number" />
                                             <label htmlFor="place">Название организации:</label>
                                             <input id="place" placeholder="Введите данные" autoComplete="off" type="text" />
-                                            <label htmlFor="oklad">Ваш оклад:</label>
-                                            <input id="oklad" type="text" className="mb-0" placeholder="Введите данные" />
-                                          </div>
+                                            {/*<label htmlFor="oklad">Ваш оклад:</label>*/}
+                                            {/*<input id="oklad" type="text" className="mb-0" placeholder="Введите данные" />*/}
                                             <div className="next">
 
                                                 <a href="#" className="zood_logo" />
 
                                                 <button className="btn_submit" onClick={() => {
                                                     setStatus(4)
-                                                   
+
                                                 }}>Продолжить
                                                 </button>
                                             </div>
@@ -476,25 +521,34 @@ export default function Home(props) {
                                 </> :
                                     status === 5 ?
                                         <div className="spinner">
-                                            <h5>Пожалуйста подождите, <br />
-                                                проверЯЕМ ВОЗМОЖНОСТЬ <br /> ПРЕДОСТАВЛЕНИЯ КРЕДИТА.</h5>
-                                            <FadeLoader
-                                                color="#FEC50C"
-                                                height="25"
-                                                width="7"
-                                                radius="40"
-                                                margin="20"
-                                            />
-                                            <p>Желательно не закрывайте это окно или приложение.</p>
+                                            <a href="#" className="logo" />
+
+
+                                            <h5 className="text-center">Пожалуйста подождите,
+                                                проверЯЕМ ВОЗМОЖНОСТЬ ПРЕДОСТАВЛЕНИЯ КРЕДИТА.</h5>
+                                            <div className="loader">
+                                                <FadeLoader
+                                                    color="#FEC50C"
+                                                    height="25"
+                                                    width="7"
+                                                    radius="40"
+                                                    margin="20"
+
+                                                />
+                                            </div>
+                                            <p className="text-center">Желательно не закрывайте это окно или приложение.</p>
                                         </div> :
                                         status === 6 ?
                                             <div className="credit-card">
                                                 <div>
                                                     <div className="text-center">
-                                                        <img src="/images/smile.svg" alt="smile.svg" />
-                                                        <h4>ПОЗДРАВЛЯЕМ!</h4>
-                                                        <p>Осталось застраховать себя</p>
+                                                        <span className="icon icon-secure"/>
                                                     </div>
+                                                    <h2 className="font-roboto-semi-bold title">Пожалуйста оплатите страхование</h2>
+
+                                                    <p>Сумма оплаты</p>
+                                                    <h4>2 536 000 UZS</h4>
+
 
                                                     <div className="card">
                                                         <div className="card-body">
@@ -511,7 +565,7 @@ export default function Home(props) {
                                                                     placeholder="Месяц"
                                                                     optionFilterProp="children"
                                                                     onChange={(v) => onChange(v, 'month')}
-                                                                    
+
                                                                     filterOption={(input, option) =>
                                                                         option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
                                                                     }
@@ -549,7 +603,7 @@ export default function Home(props) {
                                                                     filterOption={(input, option) =>
                                                                         option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
                                                                     }
-                                                                    
+
 
                                                                 >
                                                                     {Array.from({ length: 112 }, (v, k) => 2012 - k).map((item, index) => (
@@ -570,7 +624,7 @@ export default function Home(props) {
                                                             <input type="text" maxLength="1" pattern="[0-9]+" />
                                                             <input type="text" maxLength="1" pattern="[0-9]+" />
                                                             <input type="text" maxLength="1" pattern="[0-9]+" />
-                                                            <input type="text" maxLength="1" pattern="[0-9]+" />
+                                                            {/*<input type="text" maxLength="1" pattern="[0-9]+" />*/}
                                                         </div>
                                                     </div>}
                                                     <label className="agrement">{
@@ -627,7 +681,10 @@ export default function Home(props) {
                                                             {/* eslint-disable-next-line jsx-a11y/anchor-has-content,jsx-a11y/anchor-is-valid */}
                                                             <a href="#" className="logo" />
 
+
                                                             <form className="form" onSubmit={submitForm}>
+                                                                <h2 className="font-roboto-semi-bold title">Осталось получить кредит</h2>
+
                                                                 <div className="firstNumber">
                                                                     <label htmlFor="phoneNumber">Введите Ваш номер
                                                                         телефона</label>
@@ -663,7 +720,7 @@ export default function Home(props) {
                                                                         <input type="text" maxLength="1" pattern="[0-9]+" />
                                                                         <input type="text" maxLength="1" pattern="[0-9]+" />
                                                                         <input type="text" maxLength="1" pattern="[0-9]+" />
-                                                                        <input type="text" maxLength="1" pattern="[0-9]+" />
+                                                                        {/*<input type="text" maxLength="1" pattern="[0-9]+" />*/}
                                                                     </div>
                                                                 </div>
                                                                 }
@@ -741,30 +798,20 @@ export default function Home(props) {
                                                     <div className="last">
                                                         <div>
                                                             <div className="text-center congratulations">
-                                                                <span className="icon icon-secure" />
-                                                                <p><span>ПОЗДРАВЛЯЕМ!</span> <br />
-                                                                    Вы получили кредит и оплатили товар</p>
+                                                                <img src="/images/uis_check.svg" width="32" height="32" alt=""/>
                                                             </div>
+                                                            <h2 className="title"> Кредит одобрен и ПОЛУЧЕН</h2>
 
 
                                                             <div className="checkbox">
                                                                 {
-                                                                    state5 ?
-                                                                        <svg width="16" height="16" viewBox="0 0 16 16"
-                                                                            fill="none"
-                                                                            xmlns="http://www.w3.org/2000/svg">
-                                                                            <path
-                                                                                d="M13.6566 13.6566C16.7811 10.532 16.7811 5.46801 13.6566 2.34343C10.532 -0.781145 5.46801 -0.781145 2.34343 2.34343C-0.781145 5.46801 -0.781145 10.532 2.34343 13.6566C5.46801 16.7811 10.5353 16.7811 13.6566 13.6566ZM5.13172 6.77727L6.93072 8.57627L10.8715 4.63871L12.2657 6.03285L8.32813 9.97041L6.93072 11.3646L5.53658 9.97041L3.73758 8.17141L5.13172 6.77727Z"
-                                                                                fill="#303493" />
-                                                                        </svg> :
-                                                                        <svg width="16" height="16" viewBox="0 0 16 16"
-                                                                            fill="none"
-                                                                            xmlns="http://www.w3.org/2000/svg">
-                                                                            <rect opacity="0.4" x="0.5" y="0.5" width="15"
-                                                                                height="15"
-                                                                                rx="7.5"
-                                                                                stroke="#818181" />
-                                                                        </svg>
+                                                                    <svg width="16" height="16" viewBox="0 0 16 16"
+                                                                         fill="none"
+                                                                         xmlns="http://www.w3.org/2000/svg">
+                                                                        <path
+                                                                            d="M13.6566 13.6566C16.7811 10.532 16.7811 5.46801 13.6566 2.34343C10.532 -0.781145 5.46801 -0.781145 2.34343 2.34343C-0.781145 5.46801 -0.781145 10.532 2.34343 13.6566C5.46801 16.7811 10.5353 16.7811 13.6566 13.6566ZM5.13172 6.77727L6.93072 8.57627L10.8715 4.63871L12.2657 6.03285L8.32813 9.97041L6.93072 11.3646L5.53658 9.97041L3.73758 8.17141L5.13172 6.77727Z"
+                                                                            fill="#303493"/>
+                                                                    </svg>
 
                                                                 }
                                                                 <div>
