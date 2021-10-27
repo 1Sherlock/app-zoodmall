@@ -21,7 +21,7 @@ export default function Home(props) {
     const [data, setData] = useState(null)
     const [loading, setLoading] = useState(true)
     const [phoneNumber, setPhoneNumber] = useState("");
-    const [status, setStatus] = useState(1)
+    const [status, setStatus] = useState(3)
     const [isLoading, setIsLoading] = useState(false);
 
 
@@ -160,7 +160,7 @@ export default function Home(props) {
                             address: res.data.address.indexOf(',') > 0 ? res.data.address.slice(0, res.data.address.indexOf(',', res.data.address.length / 2)) : res.data.address
                         });
 
-                        setStatus(2);
+                        setStatus(3);
                     } else if (res.data.message === "Customer Not Found") {
                         toast.error("Пользователь с этими данными не найден");
                     }
@@ -361,34 +361,34 @@ export default function Home(props) {
                             </form>
 
                         </div> :
-                        status === 2 ?
-                            <div className="third">
-                                {/* eslint-disable-next-line jsx-a11y/anchor-has-content,jsx-a11y/anchor-is-valid */}
-                                <a href="#" className="logo" />
-
-                                <form className="form" onSubmit={submitForm}>
-                                    <h2 className="font-roboto-semi-bold title">Приветствуем, {data?.fullName}</h2>
-
-                                    <label htmlFor="name">Ваше Ф.И.О:</label>
-                                    <input id="name" value={data?.fullName} disabled autoComplete="off"
-                                        ref={inputValue2}
-                                        type="text" />
-                                    <label htmlFor="birth">Ваше место жительства :</label>
-                                    <input id="birth" disabled value={data?.address} autoComplete="off" type="text" />
-                                    <input type="text" disabled value={data?.address2} />
-                                    <div className="next">
-
-                                        {/* eslint-disable-next-line jsx-a11y/anchor-has-content,jsx-a11y/anchor-is-valid */}
-                                        <a href="#" className="zood_logo" />
-
-                                        <button className="btn_submit" onClick={() => {
-                                            setStatus(3)
-                                        }}>Да, все верно
-                                        </button>
-                                    </div>
-                                </form>
-
-                            </div> :
+                        // status === 2 ?
+                        //     <div className="third">
+                        //         {/* eslint-disable-next-line jsx-a11y/anchor-has-content,jsx-a11y/anchor-is-valid */}
+                        //         <a href="#" className="logo" />
+                        //
+                        //         <form className="form" onSubmit={submitForm}>
+                        //             <h2 className="font-roboto-semi-bold title">Приветствуем, {data?.fullName}</h2>
+                        //
+                        //             <label htmlFor="name">Ваше Ф.И.О:</label>
+                        //             <input id="name" value={data?.fullName} disabled autoComplete="off"
+                        //                 ref={inputValue2}
+                        //                 type="text" />
+                        //             <label htmlFor="birth">Ваше место жительства :</label>
+                        //             <input id="birth" disabled value={data?.address} autoComplete="off" type="text" />
+                        //             <input type="text" disabled value={data?.address2} />
+                        //             <div className="next">
+                        //
+                        //                 {/* eslint-disable-next-line jsx-a11y/anchor-has-content,jsx-a11y/anchor-is-valid */}
+                        //                 <a href="#" className="zood_logo" />
+                        //
+                        //                 <button className="btn_submit" onClick={() => {
+                        //                     setStatus(3)
+                        //                 }}>Да, все верно
+                        //                 </button>
+                        //             </div>
+                        //         </form>
+                        //
+                        //     </div> :
                             status === 4 ? <>
                                 <div className="inform_credit">
                                     <a href="#" className="logo" />
@@ -432,7 +432,7 @@ export default function Home(props) {
 
                                         </div>
                                         <h2 className="title">Дата оплаты кредита</h2>
-                                        <label htmlFor="day">Введите, дату рождения:</label>
+                                        <label htmlFor="day">Выберите день оплаты кредита</label>
                                         <Select
                                             id="day"
                                             className={"firstSelect"}
@@ -496,12 +496,16 @@ export default function Home(props) {
                                 status === 3 ? <>
                                     <div className="preson_data">
                                         <a href="#" className="logo" />
-                                        <form className="form" >
+                                        <form className="form" onSubmit={(e) => {
+                                            e.preventDefault();
+                                            setStatus(4)
+
+                                        }}>
                                               <h2 className="font-roboto-semi-bold title">Приветствуем, {data?.fullName}</h2>
 
                                               <label htmlFor="inn">ИНН места работы:</label>
                                             <input placeholder="Введите данные"  id="inn" autoComplete="off"
-                                                type="number" />
+                                                type="number" required min="100000000" max="999999999" maxLength="9"/>
                                             <label htmlFor="place">Название организации:</label>
                                             <input id="place" placeholder="Введите данные" autoComplete="off" type="text" />
                                             {/*<label htmlFor="oklad">Ваш оклад:</label>*/}
@@ -510,11 +514,7 @@ export default function Home(props) {
 
                                                 <a href="#" className="zood_logo" />
 
-                                                <button className="btn_submit" onClick={() => {
-                                                    setStatus(4)
-
-                                                }}>Продолжить
-                                                </button>
+                                                <button className="btn_submit" >Продолжить</button>
                                             </div>
                                         </form>
                                     </div>
