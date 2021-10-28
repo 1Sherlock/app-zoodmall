@@ -9,6 +9,7 @@ import { useEffect, useRef, useState } from 'react';
 import { API_PATH } from "./tools/constants";
 import { FadeLoader } from "react-spinners";
 import * as https from "https";
+import InputMask from 'react-input-mask';
 
 export default function Home(props) {
     process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
@@ -17,7 +18,7 @@ export default function Home(props) {
     const [state3, setState3] = useState(false)
     const [state4, setState4] = useState(false)
     const [state5, setState5] = useState(false)
-    const [state6, setState6] = useState(false)
+    const [showCvc, setShowCvc] = useState(false)
     const [data, setData] = useState(null)
     const [loading, setLoading] = useState(true)
     const [phoneNumber, setPhoneNumber] = useState("");
@@ -25,7 +26,7 @@ export default function Home(props) {
     const [isLoading, setIsLoading] = useState(false);
 
 
-    const [checkbox, setCheckbox] = useState(true)
+    const [checkbox, setCheckbox] = useState(0)
     const [checkbox2, setCheckbox2] = useState(false)
     const [codes,setCodes] = useState(false)
     const [codes2,setCodes2] = useState(false)
@@ -179,6 +180,10 @@ export default function Home(props) {
     const isDesktopOrLaptop = useMediaQuery({
         query: '(min-device-width: 576px)'
     })
+
+    const changeCard = (e) => {
+            setShowCvc(e.target.value.startsWith("5189"));
+    }
 
     return (
         isDesktopOrLaptop ?
@@ -339,7 +344,7 @@ export default function Home(props) {
                                     <div className="circle d-flex align-items-center justify-content-center">
                                         {/*<span className="icon icon-plus" />*/}
                                     </div>
-                                    Кредит выдается на срок - 12 месяцев
+                                    Кредит выдается на срок - 12/24 месяцев
                                 </div>
                                 <div className="d-flex align-items-center info">
                                     <div className="circle d-flex align-items-center justify-content-center">
@@ -395,27 +400,27 @@ export default function Home(props) {
 
                                     <form className="form" >
                                         <h2 className="title">информация о кредите</h2>
-                                         <div className="agree d-flex justify-content-between align-items-center"  onClick={() => setCheckbox(!checkbox)}>
-                                            <div className="d-flex align-items-center">
-                                            {checkbox ?
-                                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M13.6566 13.6566C16.7811 10.532 16.7811 5.46801 13.6566 2.34343C10.532 -0.781145 5.46801 -0.781145 2.34343 2.34343C-0.781145 5.46801 -0.781145 10.532 2.34343 13.6566C5.46801 16.7811 10.5353 16.7811 13.6566 13.6566ZM5.13172 6.77727L6.93072 8.57627L10.8715 4.63871L12.2657 6.03285L8.32813 9.97041L6.93072 11.3646L5.53658 9.97041L3.73758 8.17141L5.13172 6.77727Z" fill="#303493" />
-                                                    </svg> : <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <rect opacity="0.4" x="0.5" y="0.5" width="15" height="15" rx="7.5" stroke="#818181" />
-                                                    </svg>
+                                         <div className="agree d-flex justify-content-between align-items-center"  onClick={() => setCheckbox(1)}>
+                                             <div className="d-flex align-items-center" >
+                                                 {checkbox === 1 ?
+                                                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                         <path d="M13.6566 13.6566C16.7811 10.532 16.7811 5.46801 13.6566 2.34343C10.532 -0.781145 5.46801 -0.781145 2.34343 2.34343C-0.781145 5.46801 -0.781145 10.532 2.34343 13.6566C5.46801 16.7811 10.5353 16.7811 13.6566 13.6566ZM5.13172 6.77727L6.93072 8.57627L10.8715 4.63871L12.2657 6.03285L8.32813 9.97041L6.93072 11.3646L5.53658 9.97041L3.73758 8.17141L5.13172 6.77727Z" fill="#303493" />
+                                                     </svg> : <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                         <rect opacity="0.4" x="0.5" y="0.5" width="15" height="15" rx="7.5" stroke="#818181" />
+                                                     </svg>
 
 
-                                                } <div>
-                                                    <p className="font-roboto-bold">150,000 UZS</p>
-                                                    <span className="font-roboto-medium">в течении 12 месяцев</span>
-                                                </div>
-                                                </div>
-                                                <p>26% годовых</p>
+                                                 } <div className="d-flex flex-column">
+                                                 <p className="font-roboto-bold">150,000 UZS</p>
+                                                 <span className="font-roboto-medium">в течении 12 месяцев</span>
+                                             </div>
+                                             </div>
+                                             <p>26% годовых</p>
 
-                                        </div>
-                                        <div className="agree d-flex justify-content-between align-items-center" onClick={() => setCheckbox2(!checkbox2)}>
+                                         </div>
+                                        <div className="agree d-flex justify-content-between align-items-center" onClick={() => setCheckbox(2)}>
                                             <div className="d-flex align-items-center" >
-                                                {checkbox2 ?
+                                                {checkbox === 2 ?
                                                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                         <path d="M13.6566 13.6566C16.7811 10.532 16.7811 5.46801 13.6566 2.34343C10.532 -0.781145 5.46801 -0.781145 2.34343 2.34343C-0.781145 5.46801 -0.781145 10.532 2.34343 13.6566C5.46801 16.7811 10.5353 16.7811 13.6566 13.6566ZM5.13172 6.77727L6.93072 8.57627L10.8715 4.63871L12.2657 6.03285L8.32813 9.97041L6.93072 11.3646L5.53658 9.97041L3.73758 8.17141L5.13172 6.77727Z" fill="#303493" />
                                                     </svg> : <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -431,6 +436,7 @@ export default function Home(props) {
                                                 <p>26% годовых</p>
 
                                         </div>
+
                                         <h2 className="title">Дата оплаты кредита</h2>
                                         <label htmlFor="day">Выберите день оплаты кредита</label>
                                         <Select
@@ -504,8 +510,10 @@ export default function Home(props) {
                                               <h2 className="font-roboto-semi-bold title">Приветствуем, {data?.fullName}</h2>
 
                                               <label htmlFor="inn">ИНН места работы:</label>
-                                            <input placeholder="Введите данные"  id="inn" autoComplete="off"
-                                                type="number" required min="100000000" max="999999999" maxLength="9"/>
+                                            {/*<input placeholder="Введите данные"  id="inn" autoComplete="off"*/}
+                                            {/*    type="number" required min="100000000" max="999999999" maxLength="9"/>*/}
+                                            <InputMask  mask="999999999"
+                                                        placeholder="Введите данные" required  id="inn" />
                                             <label htmlFor="place">Название организации:</label>
                                             <input id="place" placeholder="Введите данные" autoComplete="off" type="text" />
                                             {/*<label htmlFor="oklad">Ваш оклад:</label>*/}
@@ -557,9 +565,10 @@ export default function Home(props) {
                                                                 <img src="/images/uzcard.png" alt="mastercard.png" />
                                                                 <img src="/images/humo.png" alt="mastercard.png" />
                                                             </div>
-                                                            <input type="number" className="form-control"
-                                                                placeholder="Номер карты" />
-                                                            <div className="select_wrap">
+
+                                                            <InputMask  mask="9999 9999 9999 9999" onChange={(e) => changeCard(e)} className="form-control shadow-none"
+                                                                        placeholder="Номер карты" />
+                                                            <div className="select_wrap justify-content-start">
                                                                 <Select
                                                                     className="card_number"
                                                                     placeholder="Месяц"
@@ -591,7 +600,7 @@ export default function Home(props) {
 
                                                                 </Select>
                                                                 <Select
-                                                                    className="select"
+                                                                    className="select w-auto"
                                                                     placeholder="Год"
                                                                     optionFilterProp="children"
                                                                     onChange={(v) => onChange(v, 'year')}
@@ -603,15 +612,17 @@ export default function Home(props) {
                                                                     filterOption={(input, option) =>
                                                                         option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
                                                                     }
-
-
                                                                 >
                                                                     {Array.from({ length: 112 }, (v, k) => 2012 - k).map((item, index) => (
                                                                         <Option value={item} key={index}>{item}</Option>
                                                                     ))}
                                                                 </Select>
-                                                                <input type="number" placeholder="CVC"
-                                                                    className="form-control h-auto" />
+                                                                {showCvc ?
+                                                                    <InputMask  mask="999"  className="form-control shadow-none h-auto"
+                                                                                placeholder="CVC"  /> :
+                                                                    <div/>
+                                                                }
+
                                                             </div>
                                                         </div>
 
